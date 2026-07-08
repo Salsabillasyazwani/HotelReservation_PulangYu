@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary: #1B2E66;
+    --primary-dark: #1e3a8a;
+    --accent: #1e3a8a;
+    --success: #16a34a;
+    --warning: #d97706;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+    --card: #FFFFFF;
+    --border: #edf1f7;
+    --border-input: #e6ecf5;
+    --text: #0f172a;
+    --secondary: #64748b;
+    --secondary-light: #94a3b8;
+}
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.font-display {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+}
+
+/* Glass & Cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================
+   FIX: tombol gradient (Save Changes, New Reservation, dll)
+   -----------------------------------------------------------
+   Sebelumnya tombol pakai class Tailwind "bg-gradient-to-r
+   from-primary to-accent". Karena "primary" & "accent" cuma
+   didaftarkan sebagai CSS variable di :root (bukan di Tailwind
+   theme/config), Tailwind JIT tidak mengenali warna itu, jadi
+   class from-primary/to-accent dianggap invalid & background
+   jadi transparan -> tombol kelihatan putih polos.
+
+   Solusi paling aman & permanen tanpa utak-atik config Tailwind:
+   pakai class custom murni CSS ini untuk semua tombol utama.
+   ========================================================== */
+.btn-gradient-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-image: linear-gradient(90deg, var(--primary), var(--accent));
+    color: #ffffff;
+    box-shadow: 0 10px 20px -6px rgba(27, 46, 102, 0.35);
+    transition: all 0.25s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-gradient-primary:hover {
+    filter: brightness(0.94);
+    box-shadow: 0 14px 24px -6px rgba(27, 46, 102, 0.45);
+    transform: translateY(-1px);
+}
+
+.btn-gradient-primary:active {
+    transform: translateY(0);
+}
+
+.btn-gradient-primary:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+}
+
+/* Secondary outline button (Cancel, Back, etc) */
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    color: var(--secondary);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background: #F9FAFB;
+    border-color: #D1D5DB;
+    color: var(--text);
+}
+
+.btn-outline:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Table Styling */
+.premium-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 1300px;
+}
+
+.premium-table th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #FAFBFC;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+    color: var(--secondary);
+    white-space: nowrap;
+}
+
+.premium-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.premium-table tbody tr:hover {
+    background-color: #FAFBFC;
+}
+
+.premium-table td {
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.premium-table td .whitespace-normal {
+    white-space: normal;
+}
+
+.premium-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+/* Status: dipetakan ke 5 warna semantik design system */
+.status-pending { background: #fffbeb; color: #d97706; }      /* Amber - Pending */
+.status-confirmed { background: #f0fdf4; color: #16a34a; }     /* Green - Confirmed */
+.status-checked-in { background: #f3f0ff; color: #7c3aed; }    /* Purple - In-progress */
+.status-checked-out { background: #eff6ff; color: #2563eb; }   /* Blue - Netral/selesai */
+.status-cancelled { background: #fef2f2; color: #dc2626; }     /* Red - Cancelled */
+
+.payment-paid { background: #f0fdf4; color: #16a34a; }
+.payment-unpaid { background: #fffbeb; color: #d97706; }
+.payment-refunded { background: #f1f5f9; color: #64748b; }
+.payment-partial { background: #fffbeb; color: #d97706; }
+
+/* Form Inputs */
+.premium-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: var(--text);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.premium-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.action-dropdown {
+    position: fixed;
+    min-width: 220px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+    overflow: hidden;
+}
+
+.action-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.dropdown-item:hover {
+    background: #F3F4F6;
+    color: var(--primary);
+}
+
+.dropdown-item.danger:hover {
+    background: #FEF2F2;
+    color: var(--danger);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Checkbox */
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #D1D5DB;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-checkbox:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.2);
+    border-left: 4px solid var(--success);
+    z-index: 100;
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-width: 360px;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+/* ===================== Create Reservation Page ===================== */
+body {
+    font-family: 'Poppins', system-ui, sans-serif;
+}
+
+.luxury-shadow {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+}
+
+.section-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-card:hover {
+    box-shadow: 0 20px 25px -12px rgb(0 0 0 / 0.05), 0 10px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+.form-input {
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.form-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(27, 46, 102, 0.1);
+    border-color: var(--primary);
+}
+
+.nav-active {
+    background-color: var(--primary);
+    color: white;
+    border-radius: 12px;
+}
+
+.modern-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+}
+
+.room-image {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.section-header {
+    font-weight: 600;
+    letter-spacing: -.015em;
+}
+
+.metric-value {
+    font-weight: 600;
+    letter-spacing: -.02em;
+}
+
+.hotel-logo {
+    font-weight: 600;
+    letter-spacing: -.03em;
+}
+
+/* Responsive tweak untuk filter tanggal di All Reservations */
+@media (min-width: 1024px) and (max-width: 1400px) {
+    #date-from, #date-to {
+        min-width: 0;
+        width: 100%;
+    }
+}

@@ -1,0 +1,124 @@
+/* Rooms content styles (sidebar & navbar styles NOT included) */
+
+.room-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.room-card:hover {
+    transform: translateY(-8px);
+}
+.room-card:hover .room-image {
+    transform: scale(1.05);
+}
+.room-image {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-backdrop {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal-backdrop.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.gold-gradient {
+    background: linear-gradient(135deg, #D4AF37 0%, #E8C84A 50%, #B8962E 100%);
+}
+.navy-gradient {
+    background: linear-gradient(135deg, #0B1739 0%, #132149 100%);
+}
+
+.badge-available {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+.badge-occupied {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+.badge-maintenance {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.filter-chip {
+    transition: all 0.2s ease;
+}
+.filter-chip:hover {
+    transform: translateY(-2px);
+}
+
+.star-rating {
+    color: #D4AF37;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, rgba(11, 23, 57, 0.95) 0%, rgba(6, 14, 36, 0.9) 100%), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920') center/cover;
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.search-input:focus {
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.btn-book {
+    background: linear-gradient(135deg, #0B1739 0%, #132149 100%);
+    transition: all 0.3s ease;
+}
+.btn-book:hover {
+    background: linear-gradient(135deg, #D4AF37 0%, #E8C84A 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.btn-book-gold {
+    background: linear-gradient(135deg, #D4AF37 0%, #E8C84A 100%);
+    transition: all 0.3s ease;
+}
+.btn-book-gold:hover {
+    background: linear-gradient(135deg, #0B1739 0%, #132149 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(11, 23, 57, 0.4);
+}
+
+.recommended-card {
+    transition: all 0.4s ease;
+}
+.recommended-card:hover {
+    transform: scale(1.03);
+}

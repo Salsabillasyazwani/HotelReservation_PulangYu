@@ -1,0 +1,298 @@
+/* Font memakai Poppins (heading) + Inter (body) sesuai design-system.md — sudah
+   di-load lewat Google Fonts di layouts/admin.blade.php, jadi tidak perlu @import lagi. */
+* {
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+h1, h2, h3, h4, .stat-value {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* ===================== LAYOUT / DISPLAY ===================== */
+.max-w-\[1400px\] { max-width: 1400px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+.block { display: block; }
+
+.flex-col { flex-direction: column; }
+.flex-1 { flex: 1 1 0%; }
+.shrink-0 { flex-shrink: 0; }
+
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.col-span-2 { grid-column: span 2 / span 2; }
+
+.overflow-hidden { overflow: hidden; }
+.overflow-x-auto { overflow-x: auto; }
+.overflow-y-auto { overflow-y: auto; }
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.top-0 { top: 0; }
+.right-0 { right: 0; }
+.left-3 { left: 0.75rem; }
+.top-1\/2 { top: 50%; }
+.left-1\/2 { left: 50%; }
+.bottom-6 { bottom: 1.5rem; }
+
+.-translate-y-1\/2 { transform: translateY(-50%); }
+.-translate-x-1\/2 { transform: translateX(-50%); }
+.translate-x-full { transform: translateX(100%); }
+
+.z-40 { z-index: 40; }
+.z-50 { z-index: 50; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.w-4 { width: 1rem; }
+.h-4 { height: 1rem; }
+.w-5 { width: 1.25rem; }
+.h-5 { height: 1.25rem; }
+.w-6 { width: 1.5rem; }
+.h-6 { height: 1.5rem; }
+.w-9 { width: 2.25rem; }
+.h-9 { height: 2.25rem; }
+.w-12 { width: 3rem; }
+.h-12 { height: 3rem; }
+.h-px { height: 1px; }
+
+.pointer-events-none { pointer-events: none; }
+.opacity-0 { opacity: 0; }
+
+/* ===================== SPACING ===================== */
+.gap-1\.5 { gap: 0.375rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-2\.5 { gap: 0.625rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
+
+.space-y-2\.5 > * + * { margin-top: 0.625rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+
+.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.pl-9 { padding-left: 2.25rem; }
+.pr-3 { padding-right: 0.75rem; }
+
+.py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.py-3\.5 { padding-top: 0.875rem; padding-bottom: 0.875rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-5 { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.pt-5 { padding-top: 1.25rem; }
+.pb-3 { padding-bottom: 0.75rem; }
+.p-5 { padding: 1.25rem; }
+
+.mt-0\.5 { margin-top: 0.125rem; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-5 { margin-top: 1.25rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mb-1\.5 { margin-bottom: 0.375rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+
+/* ===================== TYPOGRAPHY ===================== */
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+/* Aturan emas design-system.md: tidak ada teks bold (700+), maksimal semibold (600) */
+.font-bold { font-weight: 600; }
+.font-extrabold { font-weight: 600; }
+
+.tracking-tight { letter-spacing: -0.025em; }
+.tracking-wide { letter-spacing: 0.025em; }
+.uppercase { text-transform: uppercase; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+
+/* ===================== COLORS ===================== */
+.bg-white { background-color: #ffffff; }
+.bg-slate-50 { background-color: #f8fafc; }
+.bg-slate-100 { background-color: #f1f5f9; }
+.bg-slate-900 { background-color: #0f172a; }
+.bg-slate-900\/40 { background-color: rgba(15, 23, 42, 0.4); }
+.bg-blue-50 { background-color: #eff6ff; }
+.bg-emerald-50 { background-color: #ecfdf5; }
+.bg-violet-50 { background-color: #f5f3ff; }
+.bg-amber-50 { background-color: #fffbeb; }
+
+.text-white { color: #ffffff; }
+.text-slate-400 { color: #94a3b8; }
+.text-slate-500 { color: #64748b; }
+.text-slate-600 { color: #475569; }
+.text-slate-700 { color: #334155; }
+.text-slate-800 { color: #1e293b; }
+.text-slate-900 { color: #0f172a; }
+.text-blue-600 { color: #2563eb; }
+.text-emerald-600 { color: #059669; }
+.text-emerald-400 { color: #34d399; }
+.text-violet-600 { color: #7c3aed; }
+.text-amber-600 { color: #d97706; }
+.text-red-600 { color: #dc2626; }
+
+.border { border-width: 1px; border-style: solid; border-color: #e2e8f0; }
+.border-t { border-top-width: 1px; border-top-style: solid; border-top-color: #f1f5f9; }
+.border-b { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #f1f5f9; }
+.border-slate-100 { border-color: #f1f5f9; }
+.border-slate-200 { border-color: #e2e8f0; }
+.border-emerald-200 { border-color: #a7f3d0; }
+.border-red-200 { border-color: #fecaca; }
+
+.divide-y > * + * { border-top-width: 1px; border-top-style: solid; }
+.divide-slate-100 > * + * { border-top-color: #f1f5f9; }
+
+.rounded-xl { border-radius: 0.75rem; }
+.rounded-2xl { border-radius: 1rem; }
+.rounded-full { border-radius: 9999px; }
+
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); }
+.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
+
+.backdrop-blur-\[2px\] { backdrop-filter: blur(2px); }
+
+/* ===================== TRANSITIONS / INTERACTIONS ===================== */
+.transition { transition: all 0.15s ease; }
+.transition-all { transition: all 0.2s ease; }
+.transition-shadow { transition: box-shadow 0.2s ease; }
+
+.hover\:bg-slate-50:hover { background-color: #f8fafc; }
+.hover\:bg-slate-100:hover { background-color: #f1f5f9; }
+.hover\:bg-slate-200:hover { background-color: #e2e8f0; }
+.hover\:bg-slate-800:hover { background-color: #1e293b; }
+.hover\:bg-emerald-50:hover { background-color: #ecfdf5; }
+.hover\:bg-red-50:hover { background-color: #fef2f2; }
+.hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+
+.active\:scale-95:active { transform: scale(0.95); }
+.active\:scale-90:active { transform: scale(0.90); }
+.active\:scale-\[0\.98\]:active { transform: scale(0.98); }
+
+.focus\:outline-none:focus { outline: none; }
+.focus\:ring-2:focus { box-shadow: 0 0 0 2px #cbd5e1; }
+.focus\:ring-slate-300:focus { box-shadow: 0 0 0 2px #cbd5e1; }
+.focus\:border-slate-400:focus { border-color: #94a3b8; }
+
+select,
+input[type="date"],
+input[type="text"] {
+  appearance: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.fade-in {
+  animation: fadeIn 0.25s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.drawer-overlay { transition: opacity 0.3s ease; }
+.drawer-panel { transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ===== Reservation status badges ===== */
+.status-pending { background: #fffbeb; color: #d97706; }
+.status-confirmed { background: #f3f0ff; color: #7c3aed; }
+.status-checked-in { background: #eff6ff; color: #2563eb; }
+.status-checked-out { background: #f0fdf4; color: #16a34a; }
+.status-cancelled { background: #fef2f2; color: #dc2626; }
+
+/* ===== Payment status badges ===== */
+.payment-paid { background: #f0fdf4; color: #16a34a; }
+.payment-unpaid { background: #fef2f2; color: #dc2626; }
+.payment-partial { background: #fffbeb; color: #d97706; }
+.payment-refunded { background: #f1f5f9; color: #475569; }
+
+/* ===================== RESPONSIVE (sm / md / lg) ===================== */
+@media (min-width: 640px) {
+  .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .sm\:flex-row { flex-direction: row; }
+  .sm\:items-center { align-items: center; }
+  .sm\:justify-between { justify-content: space-between; }
+  .sm\:text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+  .sm\:w-\[420px\] { width: 420px; }
+  .sm\:col-span-1 { grid-column: span 1 / span 1; }
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:col-span-1 { grid-column: span 1 / span 1; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lg\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+/*BUTTON GRADIENT BLUE  */
+.btn-gradient-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #1B2E66 0%, #1e3a8a 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.35);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-gradient-blue:hover {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1B2E66 100%);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.45);
+  color: #ffffff;
+}
+
+.btn-gradient-blue:active {
+  transform: scale(0.97);
+}

@@ -1,0 +1,92 @@
+/* ==========================================================
+   Reservation (Customer) - page-specific styles
+   Semua di-scope di bawah .page-content biar gak bentrok
+   sama style sidebar/navbar global
+   ========================================================== */
+
+.page-content .fade-in {
+    animation: reservationFadeIn .4s ease;
+}
+@keyframes reservationFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-scale {
+    animation: reservationModalScale .3s ease;
+}
+@keyframes reservationModalScale {
+    from { opacity: 0; transform: scale(.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* Filter buttons */
+.page-content .filter-btn {
+    background-color: #f1f5f9; /* slate-100 */
+    color: #334155;
+}
+.page-content .filter-btn:hover {
+    background-color: #e2e8f0; /* slate-200 */
+}
+.page-content .filter-btn.active {
+    background-color: #0B1739; /* navy */
+    color: #fff;
+}
+
+/* Promo badge */
+.page-content .promo-badge {
+    background-color: rgba(212, 175, 55, 0.2);
+    color: #a16207;
+}
+
+/* Facility badge (booking page) */
+.page-content .facility-badge {
+    background-color: #f1f5f9;
+    color: #334155;
+}
+
+/* Status badges - slug sesuai reservation_status:
+   Pending, Confirmed, Checked In, Checked Out, Cancelled */
+.page-content .status-badge.status-pending {
+    background-color: #ffedd5;
+    color: #ea580c;
+}
+.page-content .status-badge.status-confirmed {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+.page-content .status-badge.status-checked-in {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+.page-content .status-badge.status-checked-out {
+    background-color: #e0e7ff;
+    color: #4338ca;
+}
+.page-content .status-badge.status-cancelled {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Action buttons */
+.page-content .btn-view-detail {
+    background-color: rgba(11, 23, 57, 0.05);
+    color: #0B1739;
+}
+.page-content .btn-view-detail:hover {
+    background-color: #0B1739;
+    color: #fff;
+}
+.page-content .btn-cancel {
+    background-color: #fef2f2;
+    color: #ef4444;
+}
+.page-content .btn-cancel:hover {
+    background-color: #ef4444;
+    color: #fff;
+}
+
+/* Row hidden by filter/search */
+.page-content .reservation-row.is-hidden {
+    display: none;
+}

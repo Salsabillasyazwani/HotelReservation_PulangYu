@@ -1,0 +1,742 @@
+:root{
+  --green:#16a34a;
+  --green-bg:#f0fdf4;
+  --green-text:#16a34a;
+  --blue-bg:#eff6ff;
+  --blue-text:#2563eb;
+  --orange-bg:#fffbeb;
+  --orange-text:#d97706;
+  --red-bg:#fef2f2;
+  --red-text:#dc2626;
+  --icon-blue-bg:#eff6ff;
+  --icon-blue:#2563eb;
+  --icon-orange-bg:#fffbeb;
+  --icon-orange:#d97706;
+  --icon-green-bg:#f0fdf4;
+  --icon-green:#16a34a;
+  --icon-purple-bg:#f3f0ff;
+  --icon-purple:#7c3aed;
+  /* Promotion butuh 1 varian tambahan (Expired) yang tidak ada
+     di Dashboard — dibuat konsisten dari token red di atas */
+  --icon-red-bg:#fef2f2;
+  --icon-red:#dc2626;
+
+  --border:#edf1f7;
+  --text-dark:#0f172a;
+  --text-mid:#64748b;
+  --text-light:#94a3b8;
+
+  /* tombol utama disamakan dgn --color-primary Design System */
+  --btn-navy:#1B2E66;
+  --btn-navy-hover:#1e3a8a;
+
+  --white:#FFFFFF;
+  --gold:#D4AF37;
+
+  --radius-xl:20px;
+  --radius-lg:16px;
+  --radius-md:12px;
+
+  --shadow-sm:0 8px 22px rgba(15, 23, 42, .06);
+  --shadow-xs:0 6px 16px rgba(15, 23, 42, .05);
+  --shadow-hover:0 14px 30px rgba(15, 23, 42, .10);
+
+  --ring:0 0 0 4px rgba(27, 46, 102, .10);
+  --trans:300ms cubic-bezier(.2,.8,.2,1);
+
+  --container-pad:22px;
+}
+
+/* =========================================================
+   Page header — IDENTIK dengan dashboard.css .page-header
+   ========================================================= */
+.page-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.page-header h2{
+  margin:0;
+  font-size:26px;
+  font-weight:600;
+  font-family:'Poppins',sans-serif;
+  color:var(--text-dark);
+}
+.page-header p{
+  margin:6px 0 0;
+  color:var(--text-mid);
+  font-size:14px;
+  font-weight:400;
+}
+.head-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-top:2px;
+}
+
+/* Buttons */
+.btn{
+  height:40px;
+  padding:0 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--white);
+  color:#0f172a;
+  font-weight:500;
+  font-size:12.5px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  transition:transform var(--trans), box-shadow var(--trans), border-color var(--trans), background var(--trans), color var(--trans);
+  box-shadow:0 10px 22px rgba(15,23,42,.05);
+  user-select:none;
+}
+.btn:hover{transform:translateY(-1px); box-shadow:var(--shadow-xs); border-color:#DCE6FF}
+.btn:active{transform:translateY(0px); box-shadow:0 6px 14px rgba(15,23,42,.06)}
+.btn.primary{
+  background:var(--btn-navy);
+  border-color:rgba(27,46,102,.2);
+  color:#fff;
+  box-shadow:0 12px 26px rgba(27,46,102,.18);
+}
+.btn.primary:hover{background:var(--btn-navy-hover)}
+.btn.ghost{
+  background:var(--white);
+  border-color:#D6E2FF;
+  color:var(--btn-navy);
+}
+.btn .caret{margin-left:2px; font-size:13px; opacity:.9}
+.btn.small{height:34px;padding:0 12px;border-radius:12px;font-size:12px}
+.btn.danger{
+  background:var(--red-text);
+  border-color:rgba(224,69,60,.25);
+  color:#fff;
+  box-shadow:0 12px 26px rgba(224,69,60,.18);
+}
+.btn.danger:hover{background:#c93a31}
+
+/* Filters (khusus Promotion, tidak ada di Dashboard — token
+   warna & radius tetap disamakan dgn keluarga Dashboard) */
+.filters{
+  margin-top:14px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-sm);
+  padding:14px;
+  display:grid;
+  grid-template-columns: 1.35fr 1fr 1fr 1.2fr auto auto;
+  gap:12px;
+  align-items:center;
+}
+.field{
+  position:relative;
+}
+.field input,.field select{
+  width:100%;
+  height:42px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#fff;
+  padding:0 12px;
+  outline:none;
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--text-dark);
+  transition:border-color var(--trans), box-shadow var(--trans);
+}
+.field input:focus,.field select:focus{box-shadow:var(--ring); border-color:#D6E2FF}
+.field .prefix{
+  position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  color:var(--text-light);font-size:15px;
+  pointer-events:none;
+}
+.field.has-icon input{
+  padding-left:36px;
+  padding-right:38px;
+}
+.field .suffix{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  color:var(--text-light);font-size:14px;
+  pointer-events:none;
+}
+.daterange{
+  display:grid;grid-template-columns: 1fr auto 1fr;
+  gap:10px;
+  align-items:center;
+}
+.dash{
+  color:var(--text-light);
+  font-weight:500;
+  font-size:12px;
+  text-align:center;
+}
+.btn.filter{
+  height:42px;border-radius:12px;
+  padding:0 14px;
+}
+.btn.reset{
+  height:42px;border-radius:12px;
+  background:var(--white);
+  color:var(--text-dark);
+}
+
+/* Table */
+.table-wrap{
+  margin-top:14px;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:var(--radius-xl);
+  box-shadow:var(--shadow-sm);
+  overflow:hidden;
+}
+
+/* =========================================================
+   FIX: tabel kepotong.
+   Sebelumnya <table> langsung anak dari .table-wrap yang
+   overflow:hidden, jadi begitu tabel lebih lebar dari
+   container, kolom di kanan (mis. Action) ke-crop dan tidak
+   ada cara buat scroll ke sana. .table-scroll ini membungkus
+   <table> SAJA (bukan seluruh .table-wrap), jadi:
+   - tabel bisa di-scroll horizontal kalau kepanjangan
+   - .table-wrap tetap overflow:hidden supaya border-radius
+     di bagian luar tetap rapi
+   - .table-foot (pagination) sengaja diletakkan DI LUAR
+     .table-scroll di Blade, jadi dia selalu full width &
+     tidak ikut ke-scroll horizontal
+   ========================================================= */
+.table-scroll{
+  overflow-x:auto;
+}
+.table-scroll table{
+  min-width:900px; /* pastikan kolom tidak kegencet walau layar sempit */
+}
+.table-scroll::-webkit-scrollbar{
+  height:8px;
+}
+.table-scroll::-webkit-scrollbar-thumb{
+  background:#D6E2FF;
+  border-radius:999px;
+}
+.table-scroll::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  font-size:12px;
+}
+thead th{
+  text-align:left;
+  padding:12px 14px;
+  color:var(--text-mid);
+  font-weight:500;
+  font-size:11px;
+  background:#FBFCFF;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+tbody td{
+  padding:12px 14px;
+  border-bottom:1px solid #F1F5F9;
+  font-weight:400;
+  color:var(--text-dark);
+  vertical-align:middle;
+  white-space:nowrap;
+}
+tbody tr{
+  transition:background var(--trans);
+}
+tbody tr:hover{background:#F7FAFF}
+.col-no{width:46px;color:#475569}
+.banner{
+  width:56px;height:36px;border-radius:10px;
+  border:1px solid var(--border);
+  object-fit:cover;
+  box-shadow:0 10px 18px rgba(15,23,42,.06);
+}
+.muted{color:var(--text-mid);font-weight:500}
+
+/* chip status — disamakan dgn token status-pill Dashboard */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  height:22px;
+  padding:0 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:500;
+  border:none;
+  background:#F8FAFC;
+  color:var(--text-mid);
+}
+.chip.success{background:var(--green-bg); color:var(--green-text)}
+.chip.warn{background:var(--orange-bg); color:var(--orange-text)}
+.chip.danger{background:var(--red-bg); color:var(--red-text)}
+.chip.inactive{background:#F1F5F9; color:var(--text-mid)}
+
+.actions{
+  display:flex;align-items:center;gap:8px;
+}
+.act{
+  width:32px;height:32px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#fff;
+  display:grid;place-items:center;
+  cursor:pointer;
+  transition:transform var(--trans), box-shadow var(--trans), border-color var(--trans);
+  box-shadow:0 10px 20px rgba(15,23,42,.05);
+}
+.act:hover{transform:translateY(-1px); box-shadow:0 12px 24px rgba(15,23,42,.09); border-color:#DCE6FF}
+.act.eye{color:var(--icon-blue); border-color:rgba(59,91,219,.18); background:var(--icon-blue-bg)}
+.act.edit{color:var(--icon-orange); border-color:rgba(224,162,51,.22); background:var(--icon-orange-bg)}
+.act.del{color:var(--red-text); border-color:rgba(224,69,60,.22); background:var(--red-bg)}
+
+.table-foot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 14px;
+  color:var(--text-mid);
+  font-weight:500;
+  font-size:11px;
+  background:#fff;
+}
+.pagination{
+  display:flex;align-items:center;gap:8px;
+}
+.pagination nav{display:flex}
+.pagination ul{list-style:none;display:flex;gap:8px;margin:0;padding:0}
+.page{
+  width:32px;height:32px;border-radius:10px;
+  border:1px solid var(--border);
+  background:#fff;
+  display:grid;place-items:center;
+  font-weight:500;
+  color:#334155;
+  cursor:pointer;
+  transition:transform var(--trans), box-shadow var(--trans), border-color var(--trans), background var(--trans), color var(--trans);
+}
+.page:hover{transform:translateY(-1px); box-shadow:var(--shadow-xs); border-color:#DCE6FF}
+.page.active{background:var(--btn-navy); color:#fff; border-color:rgba(27,46,102,.25); box-shadow:0 14px 24px rgba(27,46,102,.18)}
+.page.nav{width:34px}
+
+/* Export dropdown */
+.dropdown{
+  position:relative;
+}
+.menu{
+  position:absolute;
+  top:46px;
+  right:0;
+  width:180px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 18px 40px rgba(15,23,42,.14);
+  padding:8px;
+  display:none;
+  z-index:50;
+}
+.menu.show{display:block; animation:pop .18s ease-out}
+@keyframes pop{from{opacity:0; transform:translateY(-6px)}to{opacity:1; transform:translateY(0)}}
+.menu .mi{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 10px;
+  border-radius:12px;
+  font-weight:500;
+  font-size:12px;
+  color:var(--text-dark);
+  cursor:pointer;
+  transition:background var(--trans), transform var(--trans);
+}
+.menu .mi:hover{background:#F6F9FF; transform:translateY(-1px)}
+.menu .mi i{font-size:14px}
+.mi.excel i{color:var(--green-text)}
+.mi.pdf i{color:var(--red-text)}
+.mi.csv i{color:var(--orange-text)}
+
+/* =========================================================
+   Modals
+   FIX #1 (kepotong / tidak bisa discroll):
+   Markup .overlay dipindah ke @push('modals') di blade dan
+   dirender lewat @stack('modals') tepat sebelum </body> di
+   layouts.admin. Ini WAJIB, karena kalau .overlay masih ikut
+   nested di dalam wrapper sidebar/main-content yang punya
+   CSS transform (lazim dipakai utk animasi collapse sidebar),
+   maka position:fixed pada .overlay tidak lagi relatif ke
+   viewport asli — dia jadi "terjebak" relatif ke wrapper itu,
+   sehingga modal yang tinggi (banyak field) akan terpotong di
+   luar layar walau CSS max-height sudah benar.
+
+   FIX #2 (desain terasa beda dgn modal Facilities):
+   - Lebar modal dinaikkan (520px -> 760px) supaya grid 2 kolom
+     tidak sesak dan tinggi total konten jadi jauh lebih pendek.
+   - Font label/input/judul dibesarkan & padding dilonggarkan.
+   - Radio Status dibuat polos (tanpa kotak border) seperti di
+     Facilities.
+   ========================================================= */
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(15,23,42,.42);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  z-index:100;
+  overflow-y:auto;
+}
+.overlay.show{display:flex}
+.modal-row{
+  width:100%;
+  display:flex;
+  gap:18px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:auto 0;
+}
+.promo-modal{
+  width:760px;
+  max-height:calc(100vh - 44px);
+  min-height:0;
+  background:#fff;
+  background-color:#fff; /* pengaman: pastikan opaque, tidak ada properti lain yg override jadi transparent */
+  border:1px solid var(--border);
+  border-radius:22px;
+  box-shadow:0 26px 60px rgba(15,23,42,.20);
+  overflow:hidden;
+  display:none; /* default tersembunyi; dimunculkan lewat class .active di bawah */
+  flex-direction:column;
+  transform:translateY(10px);
+  opacity:0;
+  transition:transform var(--trans), opacity var(--trans);
+  isolation:isolate; /* bikin stacking context sendiri, hindari konflik z-index/opacity dari ancestor */
+}
+.promo-modal.active{
+  /* WAJIB pakai class, bukan inline style dari JS (style.display='block'),
+     supaya display:flex tidak pernah tertimpa jadi 'block' — flex context
+     ini yang membuat .mb (body) bisa scroll lewat flex:1 1 auto + min-height:0. */
+  display:flex;
+  opacity:1; /* fallback: kalau transisi .overlay.show belum sempat trigger, tetap opaque saat .active */
+}
+
+/* FIX #3 (root cause modal kepotong / .mb tidak mau menyusut):
+   .mh/.mb/.mf pada modalAdd, modalEdit, dan modalDelete tidak langsung
+   jadi anak flex dari .promo-modal — mereka anak dari <form>. <form>
+   secara default display:block, BUKAN flex container, jadi begitu dia
+   menyisip di tengah, seluruh chain flex (.promo-modal -> .mh/.mb/.mf)
+   putus di titik itu. Akibatnya properti "flex:1 1 auto; min-height:0"
+   di .mb tidak pernah berlaku (parent langsungnya bukan flex context),
+   sehingga .mb tumbuh bebas mengikuti tinggi kontennya sendiri dan
+   overflow-y:auto tidak pernah aktif.
+
+   Perbaikan: <form> yang menjadi anak langsung .promo-modal harus ikut
+   jadi flex container kolom, mengisi penuh sisa ruang .promo-modal,
+   dan boleh menyusut (min-height:0) supaya .mb di dalamnya bisa scroll.
+   Rule ini otomatis hanya kena ke #modalAdd/#modalEdit/#modalDelete
+   (yang punya <form>) — #modalView tidak terpengaruh karena .mh/.mb/.mf
+   di situ memang sudah anak langsung .promo-modal. */
+.promo-modal > form{
+  display:flex;
+  flex-direction:column;
+  flex:1 1 auto;
+  min-height:0;
+}
+
+.promo-modal.small{width:400px}
+.promo-modal .mh{
+  flex:0 0 auto;
+  padding:18px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+  background:#fff;
+}
+.mh .ttl{font-weight:600;font-family:'Poppins',sans-serif;font-size:18px;color:var(--text-dark)}
+.closex{
+  width:36px;height:36px;border-radius:12px;
+  border:1px solid var(--border);
+  background:#fff;
+  cursor:pointer;
+  display:grid;place-items:center;
+  transition:transform var(--trans), box-shadow var(--trans), border-color var(--trans);
+}
+.closex:hover{transform:translateY(-1px); box-shadow:var(--shadow-xs); border-color:#DCE6FF}
+.promo-modal .mb{
+  flex:1 1 auto;
+  min-height:0; /* WAJIB: tanpa ini, flex item tidak akan menyusut di bawah
+                   tinggi kontennya sendiri, sehingga overflow-y:auto tidak
+                   pernah aktif (scrollbar internal tidak muncul) walau
+                   .modal sudah dibatasi max-height. */
+  overflow-y:auto;
+  padding:20px 22px 22px;
+}
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.grid3{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:14px;
+}
+.page-content .label{
+  font-size:13px;color:#334155;font-weight:500;
+  margin-bottom:8px;
+}
+.control input,.control select,.control textarea{
+  width:100%;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#fff;
+  height:44px;
+  padding:0 14px;
+  font-weight:500;
+  font-size:14px;
+  color:var(--text-dark);
+  outline:none;
+  transition:box-shadow var(--trans), border-color var(--trans);
+}
+.control input::placeholder,.control textarea::placeholder{color:#9aa1b1;font-weight:400}
+.control textarea{
+  height:90px;
+  padding:10px 14px;
+  resize:none;
+}
+.control input:focus,.control select:focus,.control textarea:focus{box-shadow:var(--ring); border-color:#D6E2FF}
+
+/* Radio Status — polos seperti modal Add Facility, tanpa kotak border */
+.radio-row{
+  display:flex;align-items:center;gap:22px;
+  height:auto;
+  border:none;
+  padding:0;
+}
+.radio-row label{
+  display:flex;align-items:center;gap:8px;
+  font-weight:600;font-size:14px;color:var(--text-dark);
+  cursor:pointer;
+}
+.radio-row input{
+  width:16px;height:16px;
+  accent-color:var(--btn-navy);
+}
+.promo-modal .mf{
+  flex:0 0 auto;
+  padding:16px 22px 20px;
+  display:flex;align-items:center;justify-content:flex-end;gap:10px;
+  border-top:1px solid var(--border);
+  background:#fff;
+}
+.promo-modal .mf .btn{
+  height:42px;
+  font-size:13.5px;
+  padding:0 18px;
+}
+.center-actions{
+  display:flex;gap:10px;justify-content:center;
+}
+
+/* Banner upload */
+.banner-box{
+  border:1px dashed #D6E2FF;
+  border-radius:16px;
+  background:#F8FAFF;
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  height:150px;
+  text-align:center;
+  color:var(--text-mid);
+  font-weight:500;
+  font-size:12px;
+  cursor:pointer;
+}
+.banner-box .mini{
+  width:44px;height:44px;border-radius:14px;
+  display:grid;place-items:center;
+  background:#fff;
+  border:1px solid var(--border);
+  color:var(--text-light);
+}
+.banner-box b{color:#334155}
+.thumb-edit{
+  width:100%;
+  border-radius:14px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  box-shadow:0 14px 24px rgba(15,23,42,.10);
+}
+.thumb-edit img{display:block;width:100%;height:110px;object-fit:cover}
+.thumb-edit .chg{
+  width:100%;
+  border-top:1px solid var(--border);
+  padding:8px 10px;
+  display:flex;justify-content:center;
+}
+.tags{
+  display:flex;gap:8px;flex-wrap:wrap;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:8px 10px;
+  min-height:44px;
+  align-items:center;
+}
+.tag{
+  height:26px;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:0 10px;
+  border-radius:999px;
+  background:#F1F5F9;
+  border:1px solid #E2E8F0;
+  font-size:12px;
+  font-weight:500;
+  color:#334155;
+}
+.tag button{
+  border:none;background:transparent;cursor:pointer;
+  color:var(--text-mid);font-size:14px;line-height:1;
+  padding:0;margin:0;
+}
+
+/* Detail modal */
+.detail{
+  display:grid;
+  grid-template-columns: 220px 1fr;
+  gap:18px;
+  align-items:start;
+}
+.detail .hero{
+  width:220px;height:130px;border-radius:16px;
+  border:1px solid var(--border);
+  overflow:hidden;
+  box-shadow:0 16px 28px rgba(15,23,42,.10);
+}
+.detail .hero img{width:100%;height:100%;object-fit:cover;display:block}
+.kv{
+  display:grid;
+  grid-template-columns: 170px 1fr;
+  gap:12px 14px;
+  margin-top:2px;
+  font-size:13px;
+}
+.k{color:var(--text-mid);font-weight:500}
+.v{font-weight:500;color:var(--text-dark)}
+.v .chip{transform:translateY(-1px)}
+.detail-bottom{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:10px;
+}
+
+/* Delete modal */
+.danger-head{
+  display:flex;align-items:center;gap:12px;
+}
+.warn-ic{
+  width:44px;height:44px;border-radius:16px;
+  display:grid;place-items:center;
+  background:var(--orange-bg);
+  border:1px solid rgba(245,158,11,.25);
+  color:var(--orange-text);
+  flex:0 0 auto;
+}
+.confirm{
+  text-align:center;
+  padding:8px 10px 2px;
+}
+.confirm .q{
+  font-weight:600;
+  font-family:'Poppins',sans-serif;
+  font-size:14px;
+  margin:8px 0 6px;
+}
+.confirm .sub{
+  color:var(--text-mid);
+  font-weight:500;
+  font-size:12px;
+  margin:0;
+}
+
+/* Empty state */
+.empty{
+  padding:46px 18px 42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.empty-card{
+  width:520px;
+  border-radius:24px;
+  border:1px solid var(--border);
+  background:#fff;
+  box-shadow:var(--shadow-sm);
+  padding:22px 22px 20px;
+  text-align:center;
+}
+.illus{
+  width:92px;height:92px;border-radius:26px;
+  margin:0 auto 12px;
+  background:rgba(212,175,55,.12);
+  border:1px solid rgba(212,175,55,.28);
+  display:grid;place-items:center;
+  color:var(--gold);
+  box-shadow:0 16px 28px rgba(15,23,42,.08);
+}
+.empty-card h3{margin:0;font-size:16px;font-weight:600;font-family:'Poppins',sans-serif;color:var(--text-dark)}
+.empty-card p{margin:8px 0 14px;color:var(--text-mid);font-weight:400;font-size:12.5px}
+
+/* Toast */
+.toast{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  background:#0f172a;
+  color:#fff;
+  border-radius:16px;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:0 22px 50px rgba(15,23,42,.30);
+  opacity:0;
+  transform:translateY(10px);
+  pointer-events:none;
+  transition:opacity var(--trans), transform var(--trans);
+  z-index:200;
+  font-weight:500;
+  font-size:12px;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast i{color:#A7F3D0}
+
+/* ================= RESPONSIVE (breakpoint disamakan dgn dashboard.css) ================= */
+@media (max-width:1200px){
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .promo-modal{width:92vw;}
+}
+@media (max-width:600px){
+  .stats-grid{grid-template-columns:1fr;}
+  .page-header{align-items:flex-start;}
+  .page-header h2{font-size:21px;}
+  .page-header p{font-size:13px;}
+  .stat-card{padding:16px;}
+  .overlay{padding:12px;}
+  .promo-modal, .promo-modal.small{width:100%; max-height:calc(100vh - 24px);}
+  .grid2, .grid3{grid-template-columns:1fr;}
+}

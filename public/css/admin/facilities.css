@@ -1,0 +1,246 @@
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #2563EB;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 10px;
+    transition: background-color .15s ease;
+}
+.btn-primary:hover { background-color: #1d4ed8; }
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #fff;
+    color: #334155;
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.55rem 1.1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    transition: background-color .15s ease;
+}
+.btn-outline:hover { background-color: #F8FAFC; }
+
+.btn-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #0F172A;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 10px;
+    transition: background-color .15s ease;
+}
+.btn-dark:hover { background-color: #1e293b; }
+
+/* .stats-grid / .stat-card and friends now live in admin.css (shared across all pages) */
+
+/* =====================================
+   FILTER BAR (tanpa search)
+===================================== */
+
+.filter-bar {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.filter-select {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.875rem;
+    color: #334155;
+    max-width: 180px;
+    background: #fff;
+}
+
+/* =====================================
+   TABLE
+===================================== */
+
+.table-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    overflow: hidden;
+}
+
+.table-head-row {
+    background-color: #F8FAFC;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.table-th {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    color: #64748B;
+    padding: 0.9rem 1.1rem;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.table-row {
+    border-bottom: 1px solid #F1F5F9;
+    transition: background-color .15s ease;
+}
+.table-row:last-child { border-bottom: none; }
+.table-row:hover { background-color: #F8FAFC; }
+
+.table-td {
+    padding: 0.9rem 1.1rem;
+    vertical-align: middle;
+}
+
+/* =====================================
+   PILLS / BADGES
+===================================== */
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+.pill-blue  { background: #EFF6FF; color: #2563EB; border: 1px solid #DBEAFE; }
+.pill-gray  { background: #F1F5F9; color: #475569; }
+.pill-green { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+.pill-red   { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
+
+/* =====================================
+   ACTION BUTTONS
+===================================== */
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #F8FAFC;
+    transition: background-color .15s ease;
+}
+.action-btn:hover { background-color: #E2E8F0; }
+
+/* =====================================
+   MODAL (vanilla, no Bootstrap)
+===================================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+    padding: 1rem;
+}
+.modal-overlay.hidden { display: none; }
+
+.modal-panel {
+    background: #fff;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #F1F5F9;
+}
+
+.modal-close {
+    font-size: 1.4rem;
+    line-height: 1;
+    color: #94A3B8;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.modal-close:hover { color: #475569; }
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #F1F5F9;
+}
+
+.label-uppercase {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #94A3B8;
+    margin-bottom: 0.25rem;
+}
+
+.form-group { margin-bottom: 1.1rem; }
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 0.4rem;
+}
+
+.form-input {
+    width: 100%;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.875rem;
+    color: #0F172A;
+}
+.form-input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    color: #334155;
+}
+
+/*SCROLLBAR */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
