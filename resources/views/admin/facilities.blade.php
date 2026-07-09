@@ -9,7 +9,6 @@
 @section('content')
 <div class="facilities-page px-6 py-6 max-w-[1600px] mx-auto">
 
-    {{-- Header --}}
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
         <div>
             <h1 class="text-2xl font-bold text-navy mb-1">Facilities</h1>
@@ -34,7 +33,6 @@
         </div>
     @endif
 
-    {{-- Statistic Cards --}}
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-top">
@@ -85,7 +83,6 @@
         </div>
     </div>
 
-    {{-- Filter (tanpa search) --}}
     <div class="filter-bar">
         <label class="text-sm font-medium text-slate-600">Status:</label>
 
@@ -104,7 +101,6 @@
         </button>
     </div>
 
-    {{-- Table --}}
     <div class="table-card">
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
@@ -169,7 +165,6 @@
 
 </div>
 
-{{-- ===================== DETAIL MODAL ===================== --}}
 <div id="detailModalFacility" class="modal-overlay hidden">
     <div class="modal-panel">
         <div class="modal-header">
@@ -192,7 +187,6 @@
     </div>
 </div>
 
-{{-- ===================== ADD MODAL ===================== --}}
 <div id="addModal" class="modal-overlay hidden">
     <div class="modal-panel">
         <form id="addFacilityForm" action="{{ route('admin.facilities.store') }}" method="POST">
@@ -233,7 +227,6 @@
     </div>
 </div>
 
-{{-- ===================== EDIT MODAL ===================== --}}
 <div id="editModal" class="modal-overlay hidden">
     <div class="modal-panel">
         <form id="editFacilityForm" action="{{ url('admin/facilities') }}" method="POST">
@@ -273,7 +266,6 @@
         </form>
     </div>
 </div>
-
 @endsection
 
 @push('scripts')
