@@ -3,13 +3,12 @@
 @section('title', 'My Reservation - Hotel Pulang Yo')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/customer/reservations.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/customer/reservations.css') }}?v={{ time() }}">
 @endpush
 
 @section('content')
 <div class="page-content">
 
-    <!-- Page header -->
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 fade-in">
         <div>
             <h1 class="text-2xl lg:text-3xl font-bold text-navy">My Reservation</h1>
@@ -21,7 +20,6 @@
         </button>
     </div>
 
-    <!-- Filter bar -->
     <div class="bg-white rounded-2xl shadow-sm p-4 mb-6 flex flex-col md:flex-row gap-4 md:items-center md:justify-between fade-in">
         <div class="relative w-full md:max-w-xs">
             <svg class="w-5 h-5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -37,7 +35,6 @@
         </div>
     </div>
 
-    <!-- TABLE -->
     <div class="bg-white rounded-2xl shadow-sm overflow-hidden fade-in">
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left">
@@ -105,13 +102,13 @@
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                                     </button>
                                     @if(in_array($reservation->reservation_status, ['Pending', 'Confirmed']))
-                                    <form action="{{ route('customer.reservations.cancel', $reservation->id) }}" method="POST" class="form-cancel">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit" class="btn-cancel p-2 rounded-lg transition" title="Cancel" data-code="{{ $reservation->reservation_code }}">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                                        </button>
-                                    </form>
+                                        <form action="{{ route('customer.reservations.cancel', $reservation->id) }}" method="POST" class="form-cancel">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit" class="btn-cancel p-2 rounded-lg transition" title="Cancel" data-code="{{ $reservation->reservation_code }}">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                            </button>
+                                        </form>
                                     @endif
                                 </div>
                             </td>
@@ -129,7 +126,6 @@
 
 </div>
 
-<!-- DETAIL MODAL -->
 <div id="detailModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50">
     <div class="modal-scale bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div class="bg-navy text-white p-6 rounded-t-2xl flex items-center justify-between">
