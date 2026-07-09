@@ -35,9 +35,7 @@
 
 <section class="profile-grid">
 
-    {{-- LEFT COLUMN --}}
     <div class="profile-col">
-
         <div class="card">
             <h3 class="card-title">Profile Photo</h3>
 
@@ -61,7 +59,6 @@
                     </div>
                 </div>
 
-                {{-- form upload/hapus foto - auto submit lewat profile.js --}}
                 <form id="avatarUploadForm" method="POST" action="{{ route('customer.profile.avatar.update') }}" enctype="multipart/form-data" class="hidden">
                     @csrf
                     <input type="file" name="avatar" id="photoInput" accept="image/jpeg,image/jpg,image/png" onchange="previewPhoto(event)">
@@ -95,13 +92,9 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    {{-- RIGHT COLUMN --}}
     <div class="profile-col">
-
-        {{-- Personal Information --}}
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Personal Information</h3>
@@ -130,7 +123,6 @@
             </form>
         </div>
 
-        {{-- Change Password --}}
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Change Password</h3>
@@ -176,7 +168,6 @@
                 <div class="form-field">
                     <label class="form-label">Confirm New Password</label>
                     <div class="input-with-icon">
-                        {{-- nama field ini HARUS new_password_confirmation agar rule 'confirmed' di Laravel jalan --}}
                         <input type="password" name="new_password_confirmation" required placeholder="Konfirmasi password baru" class="field">
                         <button type="button" onclick="togglePassword('new_password_confirmation')" class="input-icon-btn">
                             <i class="fa-regular fa-eye"></i>
@@ -191,7 +182,6 @@
                 </div>
             </form>
         </div>
-
     </div>
 
 </section>
