@@ -67,8 +67,7 @@ class RoomSeeder extends Seeder
             ['room_number' => '404', 'floor' => 4, 'type' => 'Presidential Suite'],
             ['room_number' => '405', 'floor' => 4, 'type' => 'Presidential Suite'],
         ];
-
-        // Status acak, dengan bobot supaya mayoritas Available (lebih realistis).
+.
         $statusPool = [
             'Available', 'Available', 'Available', 'Available',
             'Available', 'Available', 'Available',
@@ -77,7 +76,7 @@ class RoomSeeder extends Seeder
         ];
 
         foreach ($rooms as $index => $room) {
-            $imageNumber = $index + 1; // room1.png, room2.png, ..., room20.png
+            $imageNumber = $index + 1;
             $type = $room['type'];
 
             [$minPrice, $maxPrice] = $priceRanges[$type];
