@@ -92,14 +92,6 @@
         </div>
 
     </div>
-    {{-- ^ FIX: </div> penutup #main-wrap ditaruh DI SINI, tepat setelah </main>
-         dan modal bawaan layout. Sebelumnya div ini tidak pernah ditutup, jadi
-         browser otomatis menutupnya di akhir <body> — akibatnya @stack('modals')
-         (tempat modal Add/Edit/View/Delete Promotion dirender) ikut terjebak
-         sebagai ANAK dari #main-wrap, bukan anak langsung <body>. Kalau
-         #main-wrap punya transform/overflow di admin.css (lazim untuk animasi
-         sidebar), position:fixed pada .overlay jadi rusak — itu penyebab modal
-         kepotong / "stuck" / scroll malah ke halaman belakang. --}}
 
     {{-- SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -111,8 +103,6 @@
 
     {{-- JS Halaman --}}
     @stack('scripts')
-
-    {{-- Modal Halaman (sekarang benar-benar anak langsung <body>) --}}
     @stack('modals')
 
     {{-- Logout Form --}}
