@@ -1,20 +1,6 @@
-/* =========================================================
-   My Profile — Content-only JS
-   Tidak ada dummy data / fake save. Form profil submit
-   beneran ke backend (route profile.update). JS di sini
-   cuma handle interaksi UI:
-   - dropdown foto (pilih/hapus), dengan preview
-   - dropdown status
-   - validasi ringan sebelum submit
-   ========================================================= */
-
 document.addEventListener('DOMContentLoaded', function () {
 
-  // Guard: kalau file ini ke-load dua kali (misal ter-include di layout
-  // DAN di halaman), event listener jangan dipasang dua kali —
-  // itu penyebab dropdown "muncul lalu langsung ilang" (toggle 2x).
   if (document.body.dataset.profileJsLoaded === '1') {
-    console.warn('profile.js sudah pernah dijalankan sebelumnya — cek apakah file ini ke-include dua kali di Blade.');
     return;
   }
   document.body.dataset.profileJsLoaded = '1';
@@ -39,9 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const profileForm = document.getElementById('profileForm');
   const toast = document.getElementById('toast');
 
-  // ---------------------------------------------------------
-  // Toast
-  // ---------------------------------------------------------
   function showToast(msg) {
     toast.textContent = msg;
     toast.classList.remove('hidden');
@@ -49,10 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.toastTimer = setTimeout(() => toast.classList.add('hidden'), 2200);
   }
 
-  // ---------------------------------------------------------
-  // Photo upload (file input & remove-flag dibuat dinamis
-  // dan disisipkan ke dalam #profileForm supaya ikut ter-submit)
-  // ---------------------------------------------------------
   const photoInput = document.createElement('input');
   photoInput.type = 'file';
   photoInput.name = 'photo';
@@ -76,13 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
     return !menu.classList.contains('hidden');
   }
 
-  // ---------------------------------------------------------
-  // Dropdown foto & status
-  // Sekarang pakai pola yang lebih tahan tabrakan: listener penutup
-  // dipasang di document dengan capture:true (jadi selalu jalan lebih
-  // dulu, apapun urutan listener lain di document), dan syaratnya cuma
-  // "klik di luar area menu/tombolnya".
-  // ---------------------------------------------------------
   photoMenuBtn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -119,9 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
     showToast('Foto akan dihapus — klik Save Changes');
   });
 
-  // ---------------------------------------------------------
-  // Live update display name & avatar initial
-  // ---------------------------------------------------------
   fullName.addEventListener('input', () => {
     const name = fullName.value.trim();
     displayName.textContent = name || displayName.textContent;
@@ -130,9 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // ---------------------------------------------------------
-  // Status dropdown
-  // ---------------------------------------------------------
   statusBtn.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -163,14 +129,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Klik di dalam menu jangan ikut nutup menu itu sendiri
   [photoMenu, statusMenu].forEach(el => {
     el.addEventListener('click', e => e.stopPropagation());
   });
 
-  // Listener tunggal buat nutup dropdown kalau klik di luar.
-  // capture:true supaya ini jalan duluan sebelum listener 'click' lain
-  // di document (misalnya punya admin.js) sempat mengubah apa pun.
   document.addEventListener('click', function (e) {
     if (
       !photoMenu.contains(e.target) &&
@@ -187,15 +149,14 @@ document.addEventListener('DOMContentLoaded', function () {
     ) {
       closeMenu(statusMenu);
     }
-    }, true);
+  }, true);
 
-    const profileArea = document.querySelector('.profile-grid');
-
-    if (profileArea) {
-        profileArea.addEventListener('click', function(e){
-            e.stopPropagation();
-        });
-    }
+  const profileArea = document.querySelector('.profile-grid');
+  if (profileArea) {
+    profileArea.addEventListener('click', function(e){
+      e.stopPropagation();
+    });
+  }
 
   const validators = {
     fullName: v => v.trim().length > 1,
@@ -232,7 +193,6 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       showToast('Periksa kembali data yang diisi');
     }
-    // kalau valid, form lanjut submit beneran ke route profile.update
   });
 
 });
