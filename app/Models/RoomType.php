@@ -17,9 +17,6 @@ class RoomType extends Model
         'status',
         'description',
     ];
-
-    // Supaya @json($roomType) & akses ->price/->capacity/->image/->facilities
-    // tetap jalan tanpa mengubah Blade.
     protected $appends = ['price', 'capacity', 'image', 'facilities'];
 
     public function rooms()
@@ -56,8 +53,6 @@ class RoomType extends Model
             $this->rooms()->whereNotNull('image')->first()
         )->image;
     }
-
-    // Array nama fasilitas, dipakai Blade: is_array($roomType->facilities)
     public function getFacilitiesAttribute()
     {
         return $this->facilityLinks()->pluck('name')->all();
