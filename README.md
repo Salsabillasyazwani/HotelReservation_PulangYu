@@ -3,6 +3,7 @@
 > 🔑 **Login Admin (default):**
 > - Email: `admin@hotel.com`
 > - Password: `admin123`
+> - link web; https://aspel.cyou/Hotel
 >
 > Akun ini dibuat otomatis melalui **seeder** (`database/seeders/UserSeeder.php`) saat menjalankan `php artisan migrate --seed` (atau `php artisan db:seed`), dengan `role_id` yang diarahkan ke role **Admin** pada tabel `roles` (dibuat oleh `RoleSeeder.php`). Jadi begitu seeder dijalankan, akun tersebut sudah langsung bisa dipakai untuk masuk ke panel admin.
 
