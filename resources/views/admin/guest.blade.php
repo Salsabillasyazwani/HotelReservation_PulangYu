@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Hotel Pulang Yo')</title>
 
-    {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    {{-- Bootstrap Icons (dipakai: bi-person-fill, bi-envelope-fill, bi-lock-fill, bi-eye-fill, dst) --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    {{-- Google Fonts (Inter & Poppins dipakai di login.css) --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
-    {{-- CSS Login --}}
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link class="stylesheet" href="{{ asset('css/login.css') }}">
 
     @stack('styles')
 </head>
@@ -57,10 +52,7 @@
         </div>
     </div>
 
-    {{-- Bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
-    {{-- JS Login --}}
     <script src="{{ asset('js/login.js') }}"></script>
 
     @stack('scripts')
