@@ -46,9 +46,6 @@ class ReservationFactory extends Factory
         ];
     }
 
-    /**
-     * Reservasi baru, belum dikonfirmasi, tanggal check-in di masa depan.
-     */
     public function pending(): static
     {
         return $this->state(function (array $attributes) {
@@ -67,10 +64,6 @@ class ReservationFactory extends Factory
             ];
         });
     }
-
-    /**
-     * Reservasi sudah dikonfirmasi, tanggal check-in di masa depan.
-     */
     public function confirmed(): static
     {
         return $this->state(function (array $attributes) {
@@ -89,10 +82,6 @@ class ReservationFactory extends Factory
         });
     }
 
-    /**
-     * Tamu sedang menginap sekarang: check-in sudah lewat, check-out
-     * masih di masa depan.
-     */
     public function checkedIn(): static
     {
         return $this->state(function (array $attributes) {
