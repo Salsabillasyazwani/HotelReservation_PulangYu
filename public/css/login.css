@@ -371,8 +371,6 @@ textarea.hpy-input{ padding-top:8px; resize:none; min-height:clamp(28px, 4.4vh, 
     gap:0;
   }
 }
-
-/* mode mobile - background polos, dan card dihilangkan (jadi flat, nempel di background) */
 @media (max-width:576px){
   .hpy-bg{ display:none; }
   .hpy-vignette{ display:none; }
