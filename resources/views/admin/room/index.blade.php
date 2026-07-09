@@ -9,10 +9,8 @@
 @section('content')
 <div class="page-wrap">
 
-    {{-- flash fallback (dipakai room.js kalau Swal ada, boleh dihapus kalau sudah dihandle di layout) --}}
     <div id="flashSuccess" class="hidden" data-message="{{ session('success') }}"></div>
 
-    {{-- ================= HEADER ================= --}}
     <div class="page-header">
         <div class="title-block">
             <h1>Room Management</h1>
@@ -26,7 +24,6 @@
         </div>
     </div>
 
-    {{-- ================= STAT CARDS ================= --}}
     <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-top">
@@ -74,7 +71,6 @@
         </div>
     </div>
 
-    {{-- ================= FILTER (server-side, submit biasa) ================= --}}
     <form method="GET" class="toolbar card-shadow">
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Search room number or name..." class="toolbar-search">
 
@@ -114,7 +110,6 @@
         </a>
     </form>
 
-    {{-- ================= TABLE ROOMS ================= --}}
     <div class="table-card card-shadow">
         <table class="rooms-table">
             <thead>
@@ -190,7 +185,6 @@
     </div>
 </div>
 
-{{-- ================= MODAL ADD / EDIT (gabung 1) ================= --}}
 <div id="addRoomModal" class="modal-overlay hidden">
     <div class="modal-backdrop-layer"></div>
     <div class="modal-panel scrollbar-thin">
@@ -277,7 +271,6 @@
     </div>
 </div>
 
-{{-- ================= MODAL VIEW DETAIL ================= --}}
 <div id="viewRoomModal" class="modal-overlay hidden">
     <div class="modal-backdrop-layer"></div>
     <div class="modal-panel modal-panel-sm scrollbar-thin">
