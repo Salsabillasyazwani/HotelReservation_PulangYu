@@ -1,6 +1,3 @@
-// js/customer/dashboard.js
-
-// ===== Date Picker Panel =====
 document.getElementById('datePickerToggle')?.addEventListener('click', function () {
     document.getElementById('datePickerPanel')?.classList.toggle('open');
 });
@@ -13,7 +10,6 @@ document.addEventListener('click', function (e) {
     }
 });
 
-// ===== Toast Notification =====
 function showToast(title, message, type = 'success') {
     const toast = document.getElementById('toast');
     const icon = document.getElementById('toastIcon');
@@ -40,9 +36,6 @@ function showToast(title, message, type = 'success') {
     window.__toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// ===== Booking Modal =====
-// Dipanggil dari tombol "Book Now" di setiap room card.
-// Blade sudah render: data-room-id, data-room-name, data-room-price di elemen button-nya.
 function bookNow(button) {
     const roomId = button.dataset.roomId;
     const roomName = button.dataset.roomName;
@@ -52,7 +45,6 @@ function bookNow(button) {
     document.getElementById('modalRoomName').textContent = roomName;
     document.getElementById('modalPrice').textContent = formatRupiah(price);
 
-    // Simpan harga per malam supaya bisa dihitung ulang saat tanggal check-in/out berubah.
     window.__selectedRoomPrice = price;
     recalculateTotal();
 
@@ -77,7 +69,6 @@ function formatRupiah(value) {
     return 'Rp ' + Number(value || 0).toLocaleString('id-ID');
 }
 
-// Hitung ulang estimasi total setiap kali tanggal check-in/out di modal berubah.
 function recalculateTotal() {
     const form = document.getElementById('bookingForm');
     if (!form) return;
@@ -103,13 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
     form?.querySelector('[name="check_out"]')?.addEventListener('change', recalculateTotal);
 });
 
-// Biarkan #bookingForm submit langsung (method POST + @csrf sudah di Blade),
-// jadi request akan masuk ke route('customer.reservations.store') di server.
-
-// ===== Toggle Favorite (wishlist) — sudah tersambung ke backend =====
-// Endpoint yang diasumsikan: POST /customer/wishlist/{room}
-// ⚠️ Sesuaikan URL di bawah kalau nama route-mu berbeda,
-//    dan pastikan route ini sudah didaftarkan + dilindungi middleware auth.
 function toggleFavorite(btn, e) {
     e.stopPropagation();
     const roomId = btn.dataset.roomId;
@@ -120,7 +104,6 @@ function toggleFavorite(btn, e) {
         return;
     }
 
-    // Optimistic UI update dulu biar terasa instan.
     const wasActive = btn.classList.contains('active');
     btn.classList.toggle('active');
     btn.disabled = true;
@@ -147,7 +130,6 @@ function toggleFavorite(btn, e) {
             }
         })
         .catch(() => {
-            // Rollback kalau request gagal.
             btn.classList.toggle('active', wasActive);
             showToast('Failed', 'Could not update wishlist, try again', 'error');
         })
@@ -156,22 +138,16 @@ function toggleFavorite(btn, e) {
         });
 }
 
-// ===== Use Promo =====
-// Dipanggil dari tombol "Use Promo" di promo card.
 function usePromo(promoCode) {
-    // Simpan kode promo, lalu arahkan user ke halaman booking/rooms dengan promo ter-apply.
-    // ⚠️ Sesuaikan URL tujuan sesuai routing booking kamu.
     window.location.href = `/customer/rooms?promo=${encodeURIComponent(promoCode)}`;
 }
 
-// ===== Scroll Recommended Rooms =====
 function scrollRooms(direction) {
     const grid = document.getElementById('roomsGrid');
     if (!grid) return;
     grid.scrollBy({ left: direction * 300, behavior: 'smooth' });
 }
 
-// ===== Keyboard Shortcut: Escape untuk menutup modal/panel =====
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
         closeBookingModal();
