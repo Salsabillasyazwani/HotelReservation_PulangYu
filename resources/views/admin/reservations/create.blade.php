@@ -6,8 +6,7 @@
 @endpush
 
 @section('content')
-
-    {{-- WAJIB: dipakai oleh script.js untuk request AJAX (CSRF + endpoint) --}}
+ {{-- WAJIB: dipakai oleh script.js untuk request AJAX (CSRF + endpoint) --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         window.ReservationConfig = {
@@ -67,11 +66,8 @@
             </div>
         @endif
 
-        {{-- id="reservationForm" WAJIB ada, dipakai script.js untuk submit via AJAX --}}
         <form id="reservationForm" action="{{ route('admin.reservations.store') }}" method="POST" class="space-y-6">
             @csrf
-
-            {{-- Section 1: Guest Information --}}
             <div class="bg-white rounded-3xl p-6 luxury-shadow border border-[#E5E7EB] section-card">
                 <div class="flex items-center gap-x-3 mb-5">
                     <div class="w-8 h-8 flex items-center justify-center bg-[#1F3A8A] text-white rounded-2xl text-sm font-bold">1</div>
@@ -125,7 +121,6 @@
                 </div>
             </div>
 
-            {{-- Section 2: Reservation Information --}}
             <div class="bg-white rounded-3xl p-6 luxury-shadow border border-[#E5E7EB] section-card">
                 <div class="flex items-center gap-x-3 mb-5">
                     <div class="w-8 h-8 flex items-center justify-center bg-[#1F3A8A] text-white rounded-2xl text-sm font-bold">2</div>
@@ -188,7 +183,6 @@
                 </div>
             </div>
 
-            {{-- Section 3: Room Selection --}}
             <div class="bg-white rounded-3xl p-6 luxury-shadow border border-[#E5E7EB] section-card">
                 <div class="flex items-center gap-x-3 mb-5">
                     <div class="w-8 h-8 flex items-center justify-center bg-[#1F3A8A] text-white rounded-2xl text-sm font-bold">3</div>
@@ -240,8 +234,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- Room Preview: gambar & nama diisi JS dari data room asli (bukan hardcode) --}}
                     <div class="md:col-span-2">
                         <div class="flex gap-4 items-center">
                             <div class="w-40 h-24 bg-gray-100 rounded-3xl overflow-hidden border border-[#E5E7EB] flex items-center justify-center shrink-0">
@@ -259,8 +251,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Section 4: Payment Information --}}
             <div class="bg-white rounded-3xl p-6 luxury-shadow border border-[#E5E7EB] section-card">
                 <div class="flex items-center gap-x-3 mb-5">
                     <div class="w-8 h-8 flex items-center justify-center bg-[#1F3A8A] text-white rounded-2xl text-sm font-bold">4</div>
@@ -317,8 +307,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Section 5: Additional Information --}}
             <div class="bg-white rounded-3xl p-6 luxury-shadow border border-[#E5E7EB] section-card">
                 <div class="flex items-center gap-x-3 mb-5">
                     <div class="w-8 h-8 flex items-center justify-center bg-[#1F3A8A] text-white rounded-2xl text-sm font-bold">5</div>
@@ -354,16 +342,6 @@
 
     </div>
 
-    {{-- ============================================================
-         Reservation Summary Popup
-         ------------------------------------------------------------
-         Muncul hanya ketika user klik "Save Reservation" / "Save &
-         Check In" -> berfungsi sebagai konfirmasi terakhir sebelum
-         data benar-benar disimpan (step 1: preview, step 2: sukses).
-         Semua field #summary* di sini otomatis ke-update oleh JS
-         (updateSummary()) setiap ada perubahan input di form,
-         meskipun modal ini masih tersembunyi.
-         ============================================================ --}}
     <div id="save-summary-modal" class="modal-overlay">
         <div class="modal-content bg-white rounded-3xl w-full max-w-md mx-auto mt-16 shadow-soft-lg max-h-[85vh] overflow-y-auto">
 
