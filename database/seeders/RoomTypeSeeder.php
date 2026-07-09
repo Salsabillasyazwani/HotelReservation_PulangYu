@@ -8,19 +8,6 @@ use Illuminate\Database\Seeder;
 
 class RoomTypeSeeder extends Seeder
 {
-    /**
-     * Seed 6 room type dan hubungkan masing-masing ke fasilitas yang
-     * berbeda-beda lewat pivot table facility_room_type (relasi
-     * belongsToMany yang sudah ada di RoomType::facilityLinks()).
-     *
-     * NOTE: 'status' pakai huruf kecil ('active'/'inactive') sesuai enum
-     * asli di migration create_room_types_table (beda dari Facility yang
-     * pakai 'Active'/'Inactive').
-     *
-     * 'total_rooms' diisi manual sesuai jumlah kamar yang akan dibuat oleh
-     * RoomSeeder untuk masing-masing tipe (karena tidak ada observer/event
-     * otomatis yang menyinkronkan kolom ini di luar RoomController).
-     */
     public function run(): void
     {
         $roomTypes = [
