@@ -60,15 +60,6 @@ class Promotion extends Model
         return 'Active';
     }
 
-    /**
-     * Kolom `rooms` (json/array) di tabel promotions menyimpan ID dari
-     * room_types.id (bukan lagi nama string hardcoded seperti sebelumnya).
-     * Accessor ini me-resolve ID tsb ke [{id, name}, ...] dengan query ke
-     * tabel room_types. Kalau suatu room type dihapus, ID-nya otomatis
-     * tidak muncul di sini (aman, tidak error).
-     *
-     * Dipakai di Blade: $promotion->room_type_options
-     */
     public function getRoomTypeOptionsAttribute(): array
     {
         if (empty($this->rooms)) {
@@ -81,10 +72,6 @@ class Promotion extends Model
             ->all();
     }
 
-    /**
-     * Hitung nominal discount dari subtotal, sudah memperhitungkan
-     * maximum_discount (cap) dan tidak boleh melebihi subtotal itu sendiri.
-     */
     public function calculateDiscount(float $subTotal): float
     {
         $discount = match ($this->discount_type) {
@@ -100,10 +87,6 @@ class Promotion extends Model
         return round(min($discount, $subTotal), 2);
     }
 
-    /**
-     * Cek apakah promo ini valid dipakai untuk room type & subtotal tertentu.
-     * Return [bool $isValid, ?string $reason].
-     */
     public function isApplicableTo(int $roomTypeId, float $subTotal): array
     {
         if ($this->computed_status !== 'Active') {
