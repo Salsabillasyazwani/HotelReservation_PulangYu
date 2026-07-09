@@ -23,8 +23,6 @@ class SearchController extends Controller
         $results = [];
 
         /*  Room Type  */
-        // NB: RoomTypeController tidak punya method show(), jadi
-        // diarahkan ke index dengan query highlight.
         $roomTypes = RoomType::where('name', 'like', "%{$q}%")
             ->limit(5)
             ->get(['id', 'name']);
