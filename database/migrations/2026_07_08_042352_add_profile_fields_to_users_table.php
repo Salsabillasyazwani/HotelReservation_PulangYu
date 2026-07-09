@@ -3,12 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-/*
- * Migration ini menambahkan kolom yang dipakai form "My Profile"
- * kalau kolomnya belum ada. Aman dijalankan meski sebagian kolom
- * (misal: username) sudah ada duluan dari migration lain.
- */
 return new class extends Migration
 {
     public function up(): void
