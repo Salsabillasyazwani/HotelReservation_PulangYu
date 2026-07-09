@@ -414,7 +414,7 @@ function closeModal() {
     document.body.style.overflow = '';
 }
 
-/*book room, redirect ke my reservations dengan room_id preselected*/
+
 function bookRoom(roomId) {
     window.location.href = `${window.reservationsUrl}?room_id=${roomId}`;
 }
