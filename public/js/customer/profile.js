@@ -1,5 +1,3 @@
-/* profile page scripts - hotel pulang yo (customer) */
-
 document.addEventListener('DOMContentLoaded', function () {
 
     if (document.body.dataset.customerProfileJsLoaded === '1') {
@@ -8,19 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     document.body.dataset.customerProfileJsLoaded = '1';
 
-    /*server flash message -> toast*/
     const serverFlash = document.getElementById('serverFlash');
     if (serverFlash) {
         showToast(serverFlash.dataset.message, serverFlash.dataset.type);
     }
 
-    /* ---------------------------------------------------------
-       Dropdown foto (pilih / hapus)
-       Sama kayak versi admin: listener penutup dipasang di document
-       dengan capture:true + syarat "klik di luar area menu/tombolnya".
-       Ini yang bikin lebih tahan tabrakan sama listener 'click' lain
-       di document (misalnya punya customer.js untuk dropdown navbar).
-       --------------------------------------------------------- */
     const photoMenuBtn   = document.getElementById('photoMenuBtn');
     const photoMenu      = document.getElementById('photoMenu');
     const choosePhotoBtn = document.getElementById('choosePhotoBtn');
@@ -64,9 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /* ---------------------------------------------------------
-       Live update nama/avatar saat input nama diketik
-       --------------------------------------------------------- */
     const editName = document.getElementById('editName');
     const displayName = document.getElementById('displayName');
     if (editName && displayName) {
@@ -76,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-/*update password - validasi client-side sebelum submit native ke server*/
 function validatePasswordForm(e) {
     const form = e.target;
     const newPassword = form.querySelector('[name="new_password"]').value;
@@ -97,7 +83,6 @@ function validatePasswordForm(e) {
     return true;
 }
 
-/*password strength*/
 function checkPasswordStrength(password) {
     let strength = 0;
     if (password.length >= 8) strength++;
@@ -124,7 +109,6 @@ function checkPasswordStrength(password) {
     }
 }
 
-/*toggle password visibility*/
 function togglePassword(inputName) {
     const input = document.querySelector(`[name="${inputName}"]`);
     if (input) {
@@ -132,7 +116,6 @@ function togglePassword(inputName) {
     }
 }
 
-/*avatar preview + auto-submit ke server*/
 function previewPhoto(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -153,7 +136,6 @@ function previewPhoto(event) {
     document.getElementById('avatarUploadForm').submit();
 }
 
-/*toast*/
 function showToast(message, type = 'success') {
     const toast = document.getElementById('toast');
     if (!toast) return;
