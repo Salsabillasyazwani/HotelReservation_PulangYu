@@ -9,7 +9,6 @@
 @section('content')
 <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
 
-  {{-- ===================== HEADER ===================== --}}
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
     <div>
       <h1 class="text-2xl sm:text-3xl font-semibold text-slate-900 tracking-tight">Reservation Report</h1>
@@ -31,10 +30,7 @@
     </div>
   </div>
 
-  {{-- ===================== STAT CARDS ===================== --}}
-  {{-- Pola .stat-card standar (sama seperti Dashboard, Rooms, Facilities) — lihat design-system.md --}}
   <div class="stats-grid mt-6">
-
     <div class="stat-card">
       <div class="stat-top">
         <div class="stat-icon blue">
@@ -82,14 +78,10 @@
       <div class="stat-value">{{ number_format($stats['checked_out'] ?? 0) }}</div>
       <div class="stat-trend">Guest checked out</div>
     </div>
-
   </div>
 
-  {{-- ===================== FILTER SECTION ===================== --}}
   <form method="GET" action="{{ route('admin.reports') }}" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 mt-5">
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      {{-- Search bar dihapus dari halaman ini: pencarian sekarang terpusat di Navbar
-           (Global Search). Parameter "search" tetap dipertahankan di backend. --}}
       <input type="hidden" name="search" value="{{ request('search') }}">
       <div>
         <label class="text-xs font-semibold text-slate-600 mb-1.5 block">Date From</label>
@@ -136,10 +128,10 @@
       </div>
     </div>
     <div class="flex items-center gap-3 mt-4">
-    <button type="submit" class="flex items-center gap-2 bg-slate-900 text-white font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:bg-slate-800 active:scale-95 transition-all text-sm">
+      <button type="submit" class="flex items-center gap-2 bg-slate-900 text-white font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:bg-slate-800 active:scale-95 transition-all text-sm">
         <i data-lucide="filter" class="w-4 h-4"></i>
         Filter
-        </button>
+      </button>
       <a href="{{ route('admin.reports') }}" class="flex items-center gap-2 bg-white border border-slate-200 text-slate-600 font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:bg-slate-50 active:scale-95 transition-all text-sm">
         <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
         Reset
@@ -147,7 +139,6 @@
     </div>
   </form>
 
-  {{-- ===================== TABLE ===================== --}}
   <div class="bg-white rounded-2xl shadow-sm border border-slate-100 mt-4 overflow-hidden">
     <div class="px-5 pt-5 pb-3">
       <h2 class="text-base font-semibold text-slate-900">Reservation Report List</h2>
@@ -201,7 +192,6 @@
       </table>
     </div>
 
-    {{-- Pagination --}}
     <div class="flex flex-col sm:flex-row items-center justify-between gap-3 px-5 py-4 border-t border-slate-100">
       <p class="text-xs text-slate-500">
         Showing {{ $reservations->firstItem() ?? 0 }} to {{ $reservations->lastItem() ?? 0 }} of {{ $reservations->total() }} results
@@ -213,12 +203,9 @@
   </div>
 </div>
 
-{{-- ===================== DRAWER OVERLAY ===================== --}}
 <div id="drawerOverlay" class="drawer-overlay fixed inset-0 bg-slate-900/40 backdrop-blur-[2px] z-40 opacity-0 pointer-events-none"></div>
 
-{{-- ===================== DETAIL DRAWER ===================== --}}
 <div id="drawerPanel" class="drawer-panel fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 shadow-2xl translate-x-full flex flex-col">
-
   <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100">
     <h2 class="text-lg font-semibold text-slate-900">Reservation Detail</h2>
     <button id="drawerCloseBtn" class="w-9 h-9 rounded-full hover:bg-slate-100 flex items-center justify-center transition">
@@ -268,13 +255,12 @@
 
   <div class="px-6 py-4 border-t border-slate-100">
     <button id="drawerCloseBtnBottom" class="w-full btn-gradient-blue" style="justify-content: center;">
-  <i data-lucide="x" class="w-4 h-4"></i>
-  Close
-</button>
+      <i data-lucide="x" class="w-4 h-4"></i>
+      Close
+    </button>
   </div>
 </div>
 
-{{-- Toast --}}
 <div id="toastBox" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-sm font-medium px-5 py-3 rounded-xl shadow-xl opacity-0 pointer-events-none transition-all z-50 flex items-center gap-2">
   <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
   <span id="toastMsg">Done</span>
