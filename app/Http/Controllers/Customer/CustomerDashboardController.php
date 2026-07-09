@@ -61,7 +61,7 @@ class CustomerDashboardController extends Controller
                 ];
             });
 
-        // 3. PROMOTIONS (aktif hari ini)
+        // PROMOTIONS (aktif hari ini)
         $promotions = Promotion::where('status', 'Active')
             ->whereDate('start_date', '<=', $today)
             ->whereDate('end_date', '>=', $today)
