@@ -41,12 +41,6 @@
 }
 .btn-dark:hover { background-color: #1e293b; }
 
-/* .stats-grid / .stat-card and friends now live in admin.css (shared across all pages) */
-
-/* =====================================
-   FILTER BAR (tanpa search)
-===================================== */
-
 .filter-bar {
     background: #fff;
     border-radius: 16px;
@@ -69,9 +63,7 @@
     background: #fff;
 }
 
-/* =====================================
-   TABLE
-===================================== */
+/*TABLE */
 
 .table-card {
     background: #fff;
@@ -108,9 +100,6 @@
     vertical-align: middle;
 }
 
-/* =====================================
-   PILLS / BADGES
-===================================== */
 
 .pill {
     display: inline-flex;
@@ -125,11 +114,6 @@
 .pill-gray  { background: #F1F5F9; color: #475569; }
 .pill-green { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
 .pill-red   { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
-
-/* =====================================
-   ACTION BUTTONS
-===================================== */
-
 .action-btn {
     width: 32px;
     height: 32px;
@@ -142,9 +126,6 @@
 }
 .action-btn:hover { background-color: #E2E8F0; }
 
-/* =====================================
-   MODAL (vanilla, no Bootstrap)
-===================================== */
 
 .modal-overlay {
     position: fixed;
