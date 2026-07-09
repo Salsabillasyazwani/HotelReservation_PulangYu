@@ -1,4 +1,3 @@
-<!-- ============ SIDEBAR (CUSTOMER) ============ -->
 <aside id="sidebar">
 
     <!-- Logo -->
