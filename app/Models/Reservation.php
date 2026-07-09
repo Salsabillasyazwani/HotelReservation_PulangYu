@@ -86,16 +86,6 @@ class Reservation extends Model
     {
         return $this->belongsTo(Promotion::class);
     }
-
-    /**
-     * Hitung nights, tax, discount, dan total_amount.
-     *
-     * Kalau $discountAmount diisi manual (bukan null), dipakai apa adanya
-     * (dipakai misalnya kalau suatu saat butuh override manual). Kalau
-     * dibiarkan null (default) dan reservasi ini punya promotion_id yang
-     * ter-attach, discount dihitung otomatis dari Promotion::calculateDiscount().
-     * Kalau tidak ada promotion sama sekali, discount = 0.
-     */
     public function calculateTotals(float $taxRate = 0.10, ?float $discountAmount = null): void
     {
         $checkIn  = \Carbon\Carbon::parse($this->check_in);
