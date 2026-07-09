@@ -57,22 +57,12 @@ class PromotionController extends Controller
 
     public function store(Request $request)
     {
-        // Kalau validateData() gagal (mis. promo_code sudah dipakai, tanggal
-        // tidak valid, dll), Laravel otomatis:
-        //   1. redirect() kembali ke halaman sebelumnya (index)
-        //   2. flash semua input lama ke old()
-        //   3. flash semua pesan error ke session (dibaca via @error() di Blade)
-        // Request TIDAK pernah sampai ke Promotion::create() di bawah ini kalau
-        // validasi gagal — jadi data memang benar-benar tidak pernah masuk DB,
-        // ini expected behavior, BUKAN bug di controller.
         $validated = $this->validateData($request);
 
         if ($request->hasFile('banner')) {
             $validated['banner'] = $request->file('banner')->store('promotions', 'public');
         }
 
-        // 'rooms' berisi array of room_types.id (integer), divalidasi di
-        // validateData() lewat 'rooms.*' => 'integer|exists:room_types,id'.
         $validated['rooms'] = $request->input('rooms', []);
 
         Promotion::create($validated);
@@ -188,11 +178,7 @@ class PromotionController extends Controller
             'rooms' => 'nullable|array',
             'rooms.*' => 'integer|exists:room_types,id',
         ], [
-            // Pesan custom biar jelas ke user KENAPA gagal (dulu diam-diam
-            // gagal karena modal ketutup lagi sebelum error sempat terbaca).
-            'promo_code.unique' => 'Promo code ini sudah dipakai, gunakan kode lain.',
-            'end_date.after_or_equal' => 'End date tidak boleh sebelum start date.',
-            'rooms.*.exists' => 'Salah satu room type yang dipilih tidak valid.',
+           
         ]);
     }
 }
