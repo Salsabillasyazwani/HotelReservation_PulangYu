@@ -10,19 +10,6 @@ use Illuminate\Database\Seeder;
 
 class ReservationSeeder extends Seeder
 {
-    /**
-     * Seed 20 reservasi.
-     *
-     * Strategi anti-overlap: setiap reservasi dipasangkan dengan SATU
-     * room yang berbeda (20 reservasi <-> 20 room, tanpa ada room yang
-     * dipakai dua kali). Karena masing-masing room cuma dapat 1 reservasi,
-     * tidak mungkin terjadi bentrok tanggal pada room yang sama — jadi
-     * tidak perlu logic pengecekan overlap tambahan.
-     *
-     * nights, tax, discount, dan total_amount TIDAK dihitung manual di
-     * sini — semuanya dihitung lewat Reservation::calculateTotals(),
-     * method yang sudah ada di Model, sesuai instruksi.
-     */
     public function run(): void
     {
         $rooms = Room::all()->shuffle()->values();
@@ -40,14 +27,12 @@ class ReservationSeeder extends Seeder
         // Ada promosi aktif atau tidak (opsional, sesuai instruksi "Promotion bila tersedia").
         $promotions = Promotion::all();
 
-        // Distribusi status reservasi untuk 20 data: campuran yang sudah
-        // selesai, sedang menginap, akan datang, dan dibatalkan.
         $statusPlan = array_merge(
-            array_fill(0, 5, 'checkedOut'),   // sudah selesai
-            array_fill(0, 5, 'checkedIn'),    // sedang menginap
-            array_fill(0, 6, 'confirmed'),    // akan datang, terkonfirmasi
-            array_fill(0, 2, 'pending'),      // akan datang, belum dikonfirmasi
-            array_fill(0, 2, 'cancelled'),    // dibatalkan
+            array_fill(0, 5, 'checkedOut'),   
+            array_fill(0, 5, 'checkedIn'),    
+            array_fill(0, 6, 'confirmed'),   
+            array_fill(0, 2, 'pending'),     
+            array_fill(0, 2, 'cancelled'),  
         );
         shuffle($statusPlan);
 
@@ -74,8 +59,6 @@ class ReservationSeeder extends Seeder
             $reservation->price_per_night = $room->price;
             $reservation->additional_charges = fake()->randomElement($additionalChargeOptions);
 
-            // Deposit hanya diisi untuk reservasi yang sudah/akan dibayar,
-            // sekitar 20-30% dari estimasi harga per malam.
             if (in_array($status, ['confirmed', 'checkedIn', 'checkedOut'])) {
                 $reservation->deposit = round($room->price * fake()->randomFloat(2, 0.2, 0.3), -3);
             } else {
