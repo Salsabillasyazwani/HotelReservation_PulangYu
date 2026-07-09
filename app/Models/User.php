@@ -46,10 +46,6 @@ class User extends Authenticatable
         return $this->hasOne(Guest::class);
     }
 
-    /**
-     * Alias supaya di Blade/JS lama yang pakai istilah "photo"
-     * tetap konsisten tanpa perlu rename kolom avatar di DB.
-     */
     public function getPhotoAttribute()
     {
         return $this->avatar;
