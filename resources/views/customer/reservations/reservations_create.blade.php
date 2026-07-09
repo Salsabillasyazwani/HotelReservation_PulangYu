@@ -13,7 +13,7 @@
 
         <div class="p-6">
 
-            <!-- STEP 1: pilih tanggal & jumlah tamu -->
+    
             <div id="bookingStep1">
                 <div class="grid sm:grid-cols-3 gap-4">
                     <div>
@@ -39,7 +39,6 @@
                 </div>
             </div>
 
-            <!-- STEP 2: hasil kamar available -->
             <div id="bookingStep2" class="hidden">
                 <button type="button" id="btnBackToStep1" class="flex items-center gap-2 text-sm text-slate-500 hover:text-navy mb-4">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
