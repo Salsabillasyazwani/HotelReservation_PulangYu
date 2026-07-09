@@ -196,25 +196,11 @@
   overflow:hidden;
 }
 
-/* =========================================================
-   FIX: tabel kepotong.
-   Sebelumnya <table> langsung anak dari .table-wrap yang
-   overflow:hidden, jadi begitu tabel lebih lebar dari
-   container, kolom di kanan (mis. Action) ke-crop dan tidak
-   ada cara buat scroll ke sana. .table-scroll ini membungkus
-   <table> SAJA (bukan seluruh .table-wrap), jadi:
-   - tabel bisa di-scroll horizontal kalau kepanjangan
-   - .table-wrap tetap overflow:hidden supaya border-radius
-     di bagian luar tetap rapi
-   - .table-foot (pagination) sengaja diletakkan DI LUAR
-     .table-scroll di Blade, jadi dia selalu full width &
-     tidak ikut ke-scroll horizontal
-   ========================================================= */
 .table-scroll{
   overflow-x:auto;
 }
 .table-scroll table{
-  min-width:900px; /* pastikan kolom tidak kegencet walau layar sempit */
+  min-width:900px;
 }
 .table-scroll::-webkit-scrollbar{
   height:8px;
@@ -264,7 +250,6 @@ tbody tr:hover{background:#F7FAFF}
 }
 .muted{color:var(--text-mid);font-weight:500}
 
-/* chip status — disamakan dgn token status-pill Dashboard */
 .chip{
   display:inline-flex;
   align-items:center;
@@ -329,7 +314,6 @@ tbody tr:hover{background:#F7FAFF}
 .page.active{background:var(--btn-navy); color:#fff; border-color:rgba(27,46,102,.25); box-shadow:0 14px 24px rgba(27,46,102,.18)}
 .page.nav{width:34px}
 
-/* Export dropdown */
 .dropdown{
   position:relative;
 }
@@ -364,26 +348,6 @@ tbody tr:hover{background:#F7FAFF}
 .mi.pdf i{color:var(--red-text)}
 .mi.csv i{color:var(--orange-text)}
 
-/* =========================================================
-   Modals
-   FIX #1 (kepotong / tidak bisa discroll):
-   Markup .overlay dipindah ke @push('modals') di blade dan
-   dirender lewat @stack('modals') tepat sebelum </body> di
-   layouts.admin. Ini WAJIB, karena kalau .overlay masih ikut
-   nested di dalam wrapper sidebar/main-content yang punya
-   CSS transform (lazim dipakai utk animasi collapse sidebar),
-   maka position:fixed pada .overlay tidak lagi relatif ke
-   viewport asli — dia jadi "terjebak" relatif ke wrapper itu,
-   sehingga modal yang tinggi (banyak field) akan terpotong di
-   luar layar walau CSS max-height sudah benar.
-
-   FIX #2 (desain terasa beda dgn modal Facilities):
-   - Lebar modal dinaikkan (520px -> 760px) supaya grid 2 kolom
-     tidak sesak dan tinggi total konten jadi jauh lebih pendek.
-   - Font label/input/judul dibesarkan & padding dilonggarkan.
-   - Radio Status dibuat polos (tanpa kotak border) seperti di
-     Facilities.
-   ========================================================= */
 .overlay{
   position:fixed;inset:0;
   background:rgba(15,23,42,.42);
@@ -409,42 +373,23 @@ tbody tr:hover{background:#F7FAFF}
   max-height:calc(100vh - 44px);
   min-height:0;
   background:#fff;
-  background-color:#fff; /* pengaman: pastikan opaque, tidak ada properti lain yg override jadi transparent */
+  background-color:#fff;
   border:1px solid var(--border);
   border-radius:22px;
   box-shadow:0 26px 60px rgba(15,23,42,.20);
   overflow:hidden;
-  display:none; /* default tersembunyi; dimunculkan lewat class .active di bawah */
+  display:none;
   flex-direction:column;
   transform:translateY(10px);
   opacity:0;
   transition:transform var(--trans), opacity var(--trans);
-  isolation:isolate; /* bikin stacking context sendiri, hindari konflik z-index/opacity dari ancestor */
+  isolation:isolate;
 }
 .promo-modal.active{
-  /* WAJIB pakai class, bukan inline style dari JS (style.display='block'),
-     supaya display:flex tidak pernah tertimpa jadi 'block' — flex context
-     ini yang membuat .mb (body) bisa scroll lewat flex:1 1 auto + min-height:0. */
   display:flex;
-  opacity:1; /* fallback: kalau transisi .overlay.show belum sempat trigger, tetap opaque saat .active */
+  opacity:1;
 }
 
-/* FIX #3 (root cause modal kepotong / .mb tidak mau menyusut):
-   .mh/.mb/.mf pada modalAdd, modalEdit, dan modalDelete tidak langsung
-   jadi anak flex dari .promo-modal — mereka anak dari <form>. <form>
-   secara default display:block, BUKAN flex container, jadi begitu dia
-   menyisip di tengah, seluruh chain flex (.promo-modal -> .mh/.mb/.mf)
-   putus di titik itu. Akibatnya properti "flex:1 1 auto; min-height:0"
-   di .mb tidak pernah berlaku (parent langsungnya bukan flex context),
-   sehingga .mb tumbuh bebas mengikuti tinggi kontennya sendiri dan
-   overflow-y:auto tidak pernah aktif.
-
-   Perbaikan: <form> yang menjadi anak langsung .promo-modal harus ikut
-   jadi flex container kolom, mengisi penuh sisa ruang .promo-modal,
-   dan boleh menyusut (min-height:0) supaya .mb di dalamnya bisa scroll.
-   Rule ini otomatis hanya kena ke #modalAdd/#modalEdit/#modalDelete
-   (yang punya <form>) — #modalView tidak terpengaruh karena .mh/.mb/.mf
-   di situ memang sudah anak langsung .promo-modal. */
 .promo-modal > form{
   display:flex;
   flex-direction:column;
@@ -474,10 +419,7 @@ tbody tr:hover{background:#F7FAFF}
 .closex:hover{transform:translateY(-1px); box-shadow:var(--shadow-xs); border-color:#DCE6FF}
 .promo-modal .mb{
   flex:1 1 auto;
-  min-height:0; /* WAJIB: tanpa ini, flex item tidak akan menyusut di bawah
-                   tinggi kontennya sendiri, sehingga overflow-y:auto tidak
-                   pernah aktif (scrollbar internal tidak muncul) walau
-                   .modal sudah dibatasi max-height. */
+  min-height:0;
   overflow-y:auto;
   padding:20px 22px 22px;
 }
@@ -516,7 +458,6 @@ tbody tr:hover{background:#F7FAFF}
 }
 .control input:focus,.control select:focus,.control textarea:focus{box-shadow:var(--ring); border-color:#D6E2FF}
 
-/* Radio Status — polos seperti modal Add Facility, tanpa kotak border */
 .radio-row{
   display:flex;align-items:center;gap:22px;
   height:auto;
@@ -548,7 +489,6 @@ tbody tr:hover{background:#F7FAFF}
   display:flex;gap:10px;justify-content:center;
 }
 
-/* Banner upload */
 .banner-box{
   border:1px dashed #D6E2FF;
   border-radius:16px;
@@ -613,7 +553,6 @@ tbody tr:hover{background:#F7FAFF}
   padding:0;margin:0;
 }
 
-/* Detail modal */
 .detail{
   display:grid;
   grid-template-columns: 220px 1fr;
@@ -644,7 +583,6 @@ tbody tr:hover{background:#F7FAFF}
   gap:10px;
 }
 
-/* Delete modal */
 .danger-head{
   display:flex;align-items:center;gap:12px;
 }
@@ -673,7 +611,6 @@ tbody tr:hover{background:#F7FAFF}
   margin:0;
 }
 
-/* Empty state */
 .empty{
   padding:46px 18px 42px;
   display:flex;
@@ -701,7 +638,6 @@ tbody tr:hover{background:#F7FAFF}
 .empty-card h3{margin:0;font-size:16px;font-weight:600;font-family:'Poppins',sans-serif;color:var(--text-dark)}
 .empty-card p{margin:8px 0 14px;color:var(--text-mid);font-weight:400;font-size:12.5px}
 
-/* Toast */
 .toast{
   position:fixed;
   right:18px;
@@ -725,7 +661,6 @@ tbody tr:hover{background:#F7FAFF}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast i{color:#A7F3D0}
 
-/* ================= RESPONSIVE (breakpoint disamakan dgn dashboard.css) ================= */
 @media (max-width:1200px){
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .promo-modal{width:92vw;}
