@@ -46,10 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.setTimeout(() => serverToast.classList.remove('show'), 2200);
   }
 
-  // GUARD: kalau markup modal (#promoOverlay dkk) belum ter-render —
-  // biasanya karena @stack('modals') belum ada di layouts/admin.blade.php —
-  // hentikan HANYA bagian modal di sini, tapi JANGAN biarkan seluruh script
-  // ini crash sehingga tombol lain (Export dropdown, dll) tetap berfungsi.
   if (!overlay || !modalAdd || !modalEdit || !modalView || !modalDelete) {
     console.error(
       "[promotion.js] Elemen modal (#promoOverlay/#modalAdd/#modalEdit/#modalView/#modalDelete) tidak ditemukan di DOM. " +
@@ -149,23 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const dropzoneAdd = document.getElementById('dropzoneAdd');
   const bannerAdd  = document.getElementById('bannerAdd');
 
-  // ============================================================
-  // FIX BANNER TIDAK TERSIMPAN:
-  // Sebelumnya previewBanner() untuk dropzone melakukan
-  // `dropzoneAdd.innerHTML = '<img ...>'`. Karena <input
-  // id="bannerAdd" name="banner"> adalah ANAK dari #dropzoneAdd,
-  // baris innerHTML itu ikut MENGHAPUS elemen <input> tsb dari DOM.
-  // Akibatnya saat form Add di-submit, field "banner" tidak pernah
-  // terkirim ke server -> kolom banner selalu NULL di database,
-  // meskipun controller (store/update) sudah benar menangani
-  // $request->hasFile('banner').
-  //
-  // Fix: JANGAN overwrite innerHTML dropzone. Preview cukup pakai
-  // CSS background-image di elemen dropzone itu sendiri, dan
-  // sembunyikan teks placeholder lewat class "has-preview"
-  // (tambahkan rule CSS-nya di promotion.css, lihat catatan di
-  // bawah). Dengan begitu <input name="banner"> tetap utuh di DOM.
-  // ============================================================
   function previewBanner(file, imgTargetOrDropzone, isDropzone) {
     if (file.size > 2 * 1024 * 1024) {
       showToast('Image too large (max 2MB)');
@@ -178,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
         imgTargetOrDropzone.style.backgroundSize = 'cover';
         imgTargetOrDropzone.style.backgroundPosition = 'center';
         imgTargetOrDropzone.classList.add('has-preview');
-        // TIDAK ADA innerHTML = ... di sini lagi — input file tetap aman.
       } else {
         imgTargetOrDropzone.src = reader.result;
       }
