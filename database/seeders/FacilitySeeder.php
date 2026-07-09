@@ -7,10 +7,6 @@ use Illuminate\Database\Seeder;
 
 class FacilitySeeder extends Seeder
 {
-    /**
-     * Seed 10 fasilitas hotel yang realistis.
-     * Semua fasilitas berstatus Active.
-     */
     public function run(): void
     {
         $facilities = [
