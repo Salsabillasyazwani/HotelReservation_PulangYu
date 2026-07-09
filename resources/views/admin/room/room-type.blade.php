@@ -1,4 +1,3 @@
-{{-- resources/views/admin/room/room-type.blade.php --}}
 @extends('layouts.admin')
 
 @section('title', 'Room Type Management - Hotel Pulang Yo')
@@ -10,7 +9,6 @@
 @section('content')
 <div class="page-wrap">
 
-    {{-- HEADER --}}
     <div class="page-header">
         <div class="title-block">
             <h1>Room Type Management</h1>
@@ -22,8 +20,6 @@
         </button>
     </div>
 
-    {{-- TOOLBAR --}}
-    {{-- Search bar dihapus dari halaman ini: pencarian sekarang terpusat di Navbar (Global Search). --}}
     <div class="toolbar card-shadow">
         <select id="statusSelect">
             <option value="all">Status: All Status</option>
@@ -45,7 +41,6 @@
         </button>
     </div>
 
-    {{-- TABLE --}}
     <div class="table-wrap card-shadow">
         <table class="data-table">
             <thead>
@@ -119,14 +114,12 @@
             </tbody>
         </table>
 
-        {{-- EMPTY STATE --}}
         <div id="emptyState" class="hidden">
             <p>No room types found</p>
             <p>Try adjusting your search or filter</p>
         </div>
     </div>
 
-    {{-- PAGINATION --}}
     <div class="pagination-bar">
         <span id="showingInfo">
             Showing {{ $roomTypes->firstItem() ?? 0 }} to {{ $roomTypes->lastItem() ?? 0 }} of {{ $roomTypes->total() ?? 0 }} room types
@@ -135,7 +128,6 @@
     </div>
 </div>
 
-{{-- ADD / EDIT MODAL --}}
 <div id="formModal" class="modal-overlay hidden">
     <div class="modal-backdrop-layer"></div>
     <div class="modal-panel scrollbar-thin">
@@ -169,7 +161,6 @@
                 </div>
             </div>
 
-            {{-- FACILITY PICKER: dropdown multi-select (checkbox) dari master data facilities --}}
             <div class="form-group">
                 <label>Facilities</label>
                 <div class="facility-picker" id="facilityPicker">
@@ -184,9 +175,6 @@
                         <input type="text" id="facilitySearchInput" class="facility-search-input" placeholder="Cari fasilitas...">
 
                         <div class="facility-option-list" id="facilityOptionList">
-                            {{-- $facilities di sini adalah collection Facility dari controller
-                                 (RoomTypeController@index), aman karena tidak ditimpa lagi
-                                 oleh @php block di dalam loop tabel di atas. --}}
                             @forelse($facilities as $facility)
                                 <label class="facility-option">
                                     <input type="checkbox" name="facilities[]" value="{{ $facility->id }}" data-name="{{ strtolower($facility->name) }}">
@@ -238,7 +226,6 @@
     </div>
 </div>
 
-{{-- VIEW MODAL --}}
 <div id="viewModal" class="modal-overlay hidden">
     <div class="modal-backdrop-layer"></div>
     <div class="modal-panel modal-panel-sm scrollbar-thin">
