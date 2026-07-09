@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class CustomerReservationController extends Controller
 {
-    /**
-     * List semua reservasi milik customer yang sedang login.
-     */
+   
     public function index()
     {
         $reservations = Reservation::with(['room.roomType', 'promotion'])
@@ -25,13 +23,6 @@ class CustomerReservationController extends Controller
 
         return view('customer.reservations.index', compact('reservations'));
     }
-
-    /**
-     * AJAX: ambil daftar kamar yang benar-benar available untuk rentang
-     * tanggal yang dipilih di modal Book Reservation.
-     * Dipanggil saat user mengubah check_in / check_out di modal, sebelum
-     * mereka memilih kamar mana yang mau dipesan.
-     */
     public function availableRooms(Request $request)
     {
         $validated = $request->validate([
