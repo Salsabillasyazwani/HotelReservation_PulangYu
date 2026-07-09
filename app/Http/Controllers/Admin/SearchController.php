@@ -67,9 +67,7 @@ class SearchController extends Controller
             ];
         }
 
-        /* -------------------- Promotion -------------------- */
-        // Route 'show' memang tidak ada (resource except show),
-        // jadi diarahkan ke index dengan query highlight.
+        /* Promotion */
         $promotions = Promotion::search($q)
             ->limit(5)
             ->get(['id', 'promo_name', 'promo_code']);
