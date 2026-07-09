@@ -10,15 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class GuestSeeder extends Seeder
 {
-    /**
-     * Belum ada user Customer sama sekali di UserSeeder (cuma 1 admin),
-     * jadi seeder ini sekalian membuat 10 user ber-role Customer,
-     * lalu membuatkan 1 Guest profile untuk masing-masing user tersebut.
-     *
-     * Tidak mengubah UserFactory yang sudah ada, cuma memanggilnya
-     * dengan state() tambahan (role_id, username, dst) sesuai fillable
-     * User yang sudah ada.
-     */
     public function run(): void
     {
         $customerRole = Role::where('name', 'Customer')->first();
