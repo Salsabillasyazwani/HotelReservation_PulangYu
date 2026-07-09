@@ -1,5 +1,4 @@
 :root{
-  /* ==== Design System — Hotel Pulang Yo Admin (Navy & Blue) ==== */
   --color-navy:#0f172a;
   --color-slate:#64748b;
   --color-slate-light:#94a3b8;
@@ -10,7 +9,6 @@
   --color-bg-card:rgba(255,255,255,.92);
   --color-bg-page:#f8fafc;
 
-  /* alias lama supaya kompatibel dgn CSS/blade yang sudah ada */
   --navy:#0f172a;
   --royal:#1B2E66;
   --gold:#D4AF37;
@@ -23,7 +21,6 @@
   --green:#16a34a;
   --red-text:#dc2626;
 
-  /* 5 warna semantik resmi (Blue/Green/Purple/Red/Amber) */
   --icon-blue-bg:#eff6ff;   --icon-blue:#2563eb;
   --icon-green-bg:#f0fdf4;  --icon-green:#16a34a;
   --icon-purple-bg:#f3f0ff; --icon-purple:#7c3aed;
@@ -38,7 +35,7 @@ html,body{
   scroll-behavior:smooth;
 }
 
-/*dark mode base*/
+/*dark mode*/
 body.dark{
   background:#0A0F1E;
   background-image:
@@ -51,7 +48,7 @@ body.dark{
 ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px;}
 body.dark ::-webkit-scrollbar-thumb{background:#334155;}
 
-/*animations*/
+/*animasi*/
 @keyframes fadeIn{from{opacity:0;} to{opacity:1;}}
 @keyframes slideUp{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);}}
 .fade-in{animation:fadeIn .5s ease both;}
@@ -61,7 +58,7 @@ body.dark ::-webkit-scrollbar-thumb{background:#334155;}
 .delay-3{animation-delay:.15s;}
 .delay-4{animation-delay:.2s;}
 
-/*stat cards*/
+/*stat card*/
 .stats-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -227,7 +224,7 @@ body.dark .submenu a:hover{ background:#1E293B; color:#fff;}
 }
 #overlay.show{ opacity:1; pointer-events:auto; }
 
-/*main content shift, ikut lebar sidebar*/
+/*main content*/
 #main-wrap{
   margin-left:330px;
   width:calc(100% - 330px);
@@ -251,7 +248,7 @@ body.dark .submenu a:hover{ background:#1E293B; color:#fff;}
   }
 }
 
-/*buttons*/
+/*button*/
 .btn-ripple{ position:relative; overflow:hidden; }
 .ripple{
   position:absolute; border-radius:50%;
@@ -312,7 +309,6 @@ body.dark .topbar{
   }
 }
 
-/*jarak konten ke topbar*/
 #main-wrap main{
   padding-top:108px;
   max-width:100%;
@@ -325,7 +321,7 @@ body.dark .topbar{
   }
 }
 
-/*page content card*/
+/*page content*/
 #main-wrap main > .page-content{
   background:#fff;
   border-radius:24px;
@@ -346,7 +342,6 @@ body.dark #main-wrap main > .page-content{
   }
 }
 
-/*teks umum di page-content*/
 body.dark h1, body.dark h2, body.dark h3{ color:#F1F5F9; }
 body.dark p{ color:#CBD5E1; }
 body.dark .text-slate-400,
@@ -426,7 +421,7 @@ body.dark .search-box .kbd{
   color:#64748b;
 }
 
-/*search results dropdown*/
+/*search dropdown*/
 .search-dropdown{
   position:absolute;
   top:calc(100% + 8px);
@@ -464,7 +459,7 @@ body.dark .search-result-item:hover{ background:#1E293B; }
   margin-left:auto;
 }
 
-/*icon buttons (notif, msg, dark mode toggle)*/
+/*icon button*/
 .icon-btn{
   position:relative;
   width:40px;height:40px;
@@ -550,7 +545,7 @@ body.dark .profile-role{ color:#64748B; }
 .profile.open svg{ transform:rotate(180deg); }
 body.dark .profile svg{ stroke:#64748B; }
 
-/*dropdown menu (notif, msg, profile)*/
+/*dropdown menu*/
 .dropdown-menu{
   position:absolute;
   top:calc(100% + 8px);
@@ -587,7 +582,7 @@ body.dark .dropdown-menu{ background:#141B2E; border-color:rgba(255,255,255,0.07
 body.dark .dropdown-menu a{ color:#CBD5E1; }
 body.dark .dropdown-menu a:hover{ background:#1E293B; }
 
-/* ===== Page transition loader (fixes hard "flash" reload between pages) ===== */
+/*page loader*/
 #pageLoader{
   position:fixed; inset:0; z-index:9999;
   display:flex; align-items:center; justify-content:center;
