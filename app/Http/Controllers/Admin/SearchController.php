@@ -22,7 +22,7 @@ class SearchController extends Controller
 
         $results = [];
 
-        /* -------------------- Room Type -------------------- */
+        /*  Room Type  */
         // NB: RoomTypeController tidak punya method show(), jadi
         // diarahkan ke index dengan query highlight.
         $roomTypes = RoomType::where('name', 'like', "%{$q}%")
@@ -38,11 +38,7 @@ class SearchController extends Controller
             ];
         }
 
-        /* -------------------- Room -------------------- */
-        // NB: sementara diarahkan ke index+highlight juga, karena belum
-        // dikonfirmasi apakah RoomController punya method show().
-        // Jika RoomController->show() memang ada, ganti ke:
-        // route('admin.room.show', $room->id)
+        /*  Room*/
         $rooms = Room::where('room_name', 'like', "%{$q}%")
             ->orWhere('room_number', 'like', "%{$q}%")
             ->limit(5)
@@ -57,11 +53,7 @@ class SearchController extends Controller
             ];
         }
 
-        /* -------------------- Reservation -------------------- */
-        // NB: sementara diarahkan ke index+highlight juga, karena belum
-        // dikonfirmasi apakah ReservationController punya method show().
-        // Jika ReservationController->show() memang ada, ganti ke:
-        // route('admin.reservations.show', $res->id)
+        /* Reservation  */
         $reservations = Reservation::search($q)
             ->limit(5)
             ->get(['id', 'guest_name', 'reservation_code']);
@@ -91,11 +83,7 @@ class SearchController extends Controller
             ];
         }
 
-        /* -------------------- Facility -------------------- */
-        // NB: sementara diarahkan ke index+highlight juga, karena belum
-        // dikonfirmasi apakah FacilityController punya method show().
-        // Jika FacilityController->show() memang ada, ganti ke:
-        // route('admin.facilities.show', $facility->id)
+        /*  Facility */
         $facilities = Facility::where('name', 'like', "%{$q}%")
             ->where('status', 'Active')
             ->limit(5)
