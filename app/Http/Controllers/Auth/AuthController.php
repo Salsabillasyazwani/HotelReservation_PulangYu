@@ -14,27 +14,19 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    // ==========================
+    
     // HALAMAN LOGIN
-    // ==========================
-
     public function showLogin()
     {
         return view('auth.login');
     }
-
-    // ==========================
     // HALAMAN REGISTER
-    // ==========================
 
     public function showRegister()
     {
         return view('auth.register');
     }
-
-    // ==========================
     // REGISTER MANUAL
-    // ==========================
 
     public function register(Request $request)
     {
@@ -80,9 +72,7 @@ class AuthController extends Controller
         }
     }
 
-    // ==========================
     // LOGIN MANUAL
-    // ==========================
 
     public function login(Request $request)
     {
@@ -108,10 +98,7 @@ class AuthController extends Controller
 
         return redirect()->route('customer.dashboard');
     }
-
-    // ==========================
     // GOOGLE LOGIN
-    // ==========================
 
     public function redirectGoogleLogin()
     {
@@ -120,9 +107,7 @@ class AuthController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    // ==========================
     // GOOGLE REGISTER
-    // ==========================
 
     public function redirectGoogleRegister()
     {
@@ -130,10 +115,7 @@ class AuthController extends Controller
 
         return Socialite::driver('google')->redirect();
     }
-
-    // ==========================
     // CALLBACK GOOGLE
-    // ==========================
 
     public function handleGoogleCallback(Request $request)
     {
@@ -143,9 +125,7 @@ class AuthController extends Controller
 
         $user = User::where('email',$googleUser->getEmail())->first();
 
-        // =====================
         // LOGIN GOOGLE
-        // =====================
 
         if($action == 'login'){
 
@@ -167,10 +147,7 @@ class AuthController extends Controller
 
             return redirect()->route('customer.dashboard');
         }
-
-        // =====================
         // REGISTER GOOGLE
-        // =====================
 
         if(!$user){
 
@@ -212,10 +189,7 @@ class AuthController extends Controller
 
         return redirect()->route('customer.dashboard');
     }
-
-    // ==========================
     // LOGOUT
-    // ==========================
 
     public function logout(Request $request)
     {
