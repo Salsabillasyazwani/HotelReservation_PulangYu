@@ -8,10 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Guest extends Model
 {
     use HasFactory;
-
-    /**
-     * Sesuai migration create_guests_table.
-     */
     protected $fillable = [
         'user_id',
         'identity_number',
