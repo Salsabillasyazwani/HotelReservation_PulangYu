@@ -1,13 +1,5 @@
-/* =========================================================
-   My Profile — Content-only styles
-   Sidebar/topbar sudah ada di layout admin.blade.php.
-   Tailwind CDN dipakai untuk grid/utility dasar; file ini
-   berisi styling khusus halaman Profile.
-   ========================================================= */
-
 .hidden { display: none !important; }
 
-/* ---------- Header ---------- */
 .profile-header{
   display:flex;
   flex-wrap:wrap;
@@ -48,7 +40,6 @@
 }
 .btn-save:hover{ opacity:.92; }
 
-/* ---------- Layout grid ---------- */
 .profile-grid{
   display:grid;
   grid-template-columns:1fr;
@@ -64,7 +55,6 @@
   gap:20px;
 }
 
-/* ---------- Card ---------- */
 .card{
   background:rgba(255,255,255,.92);
   backdrop-filter:blur(10px);
@@ -94,7 +84,6 @@
   line-height:1.5;
 }
 
-/* ---------- Avatar ---------- */
 .avatar-block{
   display:flex;
   flex-direction:column;
@@ -156,7 +145,6 @@
   margin-top:2px;
 }
 
-/* ---------- Info list ---------- */
 .info-list{
   margin-top:28px;
   width:100%;
@@ -202,7 +190,6 @@
   margin-top:2px;
 }
 
-/* ---------- Status pill ---------- */
 .status-pill{
   display:inline-flex;
   margin-top:6px;
@@ -216,7 +203,6 @@
 .pill-inactive{ background:#f1f5f9; color:#64748b; }
 .pill-suspended{ background:#fffbeb; color:#d97706; }
 
-/* ---------- Form ---------- */
 .form-grid{
   display:grid;
   grid-template-columns:1fr;
@@ -263,11 +249,9 @@
   margin-top:6px;
 }
 
-/* Error state on invalid field */
 .field.border-red-300{ border-color:#fca5a5 !important; }
 .field.bg-red-50{ background:#fef2f2 !important; }
 
-/* ---------- Status dropdown button ---------- */
 .status-btn{
   display:flex;
   align-items:center;
@@ -286,7 +270,6 @@
   color:#94a3b8;
 }
 
-/* profile.css */
 .profile-dropdown{
   position:absolute;
   width:180px;
@@ -296,7 +279,7 @@
   padding:6px;
   box-shadow:0 12px 30px rgba(20,40,90,.12);
   z-index:20;
-  animation:profileFade .16s ease forwards; /* forwards = tahan di opacity:1 stlh animasi */
+  animation:profileFade .16s ease forwards;
 }
 
 .photo-menu{
@@ -338,7 +321,6 @@
 .dot-inactive{ background:#94a3b8; }
 .dot-suspended{ background:#f59e0b; }
 
-/* ---------- Toast ---------- */
 .toast{
   position:fixed;
   right:16px;
@@ -353,7 +335,6 @@
   animation:profileFade .18s ease;
 }
 
-/* ---------- Success alert ---------- */
 .alert-success{
   background:#f0fdf4;
   color:#166534;
