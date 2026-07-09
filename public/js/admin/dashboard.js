@@ -1,6 +1,3 @@
-// Dashboard content scripts (sidebar & navbar scripts NOT included)
-
-// Toast Notification System
 function showToast(title, message, type = 'success') {
   const toast = document.getElementById('toast');
   const toastIcon = document.getElementById('toastIcon');
@@ -30,12 +27,10 @@ function showToast(title, message, type = 'success') {
   }, 3000);
 }
 
-// Use Promo
 function usePromo(code) {
   showToast('Promo Applied!', `${code} has been applied to your account`, 'warning');
 }
 
-// Book Now
 function bookNow(roomName, price) {
   document.getElementById('modalRoomName').textContent = roomName;
   document.getElementById('modalPrice').textContent = price || 'Rp 750.000';
@@ -62,7 +57,6 @@ function closeBookingModal() {
   }, 300);
 }
 
-// Toggle Favorite
 function toggleFavorite(btn, e) {
   e.stopPropagation();
   const icon = btn.querySelector('i');
@@ -79,13 +73,11 @@ function toggleFavorite(btn, e) {
   }
 }
 
-// Scroll rooms horizontally
 function scrollRooms(dir) {
   const grid = document.getElementById('roomsGrid');
   grid.scrollBy({ left: dir * 300, behavior: 'smooth' });
 }
 
-// Animate stat numbers on load
 function animateNumbers() {
   document.querySelectorAll('.card-hover h3').forEach(el => {
     const target = parseInt(el.textContent);
@@ -103,7 +95,6 @@ function animateNumbers() {
   });
 }
 
-// Intersection Observer for scroll-in animations
 const dashboardObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -116,18 +107,11 @@ document.querySelectorAll('.card-hover, .promo-card, .room-card').forEach(el => 
   dashboardObserver.observe(el);
 });
 
-// Escape key closes booking modal
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeBookingModal();
   }
 });
-
-// ============================================================
-// CHART RENDERING (uses window.dashboardData set in blade file)
-// Requires Chart.js to be loaded BEFORE this script, e.g.:
-// <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-// ============================================================
 
 function renderDashboardCharts() {
   if (typeof Chart === 'undefined') {
@@ -142,7 +126,6 @@ function renderDashboardCharts() {
 
   const { reservationChart, revenueChart, occupancyRate, occupiedRoom, totalRoom } = window.dashboardData;
 
-  // ---- Reservation Overview (Line Chart) ----
   const reservationCanvas = document.getElementById('reservationChart');
   if (reservationCanvas && reservationChart) {
     new Chart(reservationCanvas, {
@@ -182,7 +165,6 @@ function renderDashboardCharts() {
     });
   }
 
-  // ---- Revenue Overview (Bar Chart) ----
   const revenueCanvas = document.getElementById('revenueChart');
   if (revenueCanvas && revenueChart) {
     new Chart(revenueCanvas, {
@@ -224,7 +206,6 @@ function renderDashboardCharts() {
     });
   }
 
-  // ---- Occupancy Rate (Doughnut Chart) ----
   const occupancyCanvas = document.getElementById('occupancyChart');
   if (occupancyCanvas) {
     const occupied = occupiedRoom || 0;
@@ -254,7 +235,6 @@ function renderDashboardCharts() {
   }
 }
 
-// Run animations and charts on load
 window.addEventListener('load', () => {
   animateNumbers();
   renderDashboardCharts();
