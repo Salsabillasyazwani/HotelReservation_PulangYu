@@ -132,7 +132,7 @@ npm install
 composer run dev
 ```
 
-Aplikasi dapat diakses di `http://localhost:8000` (default Laravel `artisan serve`).
+Aplikasi dapat diakses di https://aspel.cyou/Hotel
 
 > Catatan: perintah `composer run dev` menjalankan `php artisan serve`, `php artisan queue:listen`, dan `npm run dev` secara bersamaan (via `concurrently`).
 
