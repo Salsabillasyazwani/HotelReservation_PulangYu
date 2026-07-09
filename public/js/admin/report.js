@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const drawerPanel = document.getElementById('drawerPanel');
   const drawerOverlay = document.getElementById('drawerOverlay');
 
-  /* ================= HELPERS ================= */
-
   function field(label, value) {
     return `<div class="flex items-start justify-between gap-3">
       <span class="text-slate-500 shrink-0">${label}</span>
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function formatDate(value) {
     if (!value) return '-';
     const d = new Date(value);
-    if (isNaN(d)) return value; // sudah berupa string tanggal terformat
+    if (isNaN(d)) return value;
     return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
@@ -36,12 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isNaN(num)) return '-';
     return 'Rp' + num.toLocaleString('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   }
-
-  /* ================= DRAWER =================
-     Struktur JSON persis dari Admin\ReservationController@show:
-     $reservation->load('room.roomType') -> semua kolom fillable Reservation
-     + relasi `room` (berisi room_number, dst) + `room.roomType` (berisi name).
-  */
 
   function fillDrawer(r) {
     document.getElementById('guestInfo').innerHTML =
@@ -124,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closeDrawer();
   });
 
-  /* ================= TOAST ================= */
   let toastTimer;
   window.toast = function (msg) {
     const box = document.getElementById('toastBox');
