@@ -23,9 +23,6 @@ class CustomerProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update data dasar: name, email.
-     */
     public function updateProfile(Request $request)
     {
         /** @var User $user */
@@ -45,10 +42,6 @@ class CustomerProfileController extends Controller
 
         return back()->with('success', 'Profil berhasil diperbarui.');
     }
-
-    /**
-     * Ganti password.
-     */
     public function updatePassword(Request $request)
     {
         /** @var User $user */
@@ -66,17 +59,11 @@ class CustomerProfileController extends Controller
         }
 
         $user->update([
-            // Model User sudah punya cast 'password' => 'hashed',
-            // jadi tidak perlu Hash::make() manual di sini.
             'password' => $validated['new_password'],
         ]);
 
         return back()->with('success', 'Password berhasil diperbarui.');
     }
-
-    /**
-     * Upload / ganti avatar.
-     */
     public function updateAvatar(Request $request)
     {
         /** @var User $user */
@@ -100,13 +87,8 @@ class CustomerProfileController extends Controller
 
         return back()->with('success', 'Foto profil berhasil diperbarui.');
     }
-
-    /**
-     * Hapus avatar (kembali ke avatar default di UI).
-     */
     public function deleteAvatar()
     {
-        /** @var User $user */
         $user = Auth::user();
 
         $disk = config('filesystems.default');
