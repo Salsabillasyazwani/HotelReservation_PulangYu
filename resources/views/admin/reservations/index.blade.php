@@ -7,7 +7,6 @@
 @endpush
 
 @section('content')
-    {{-- WAJIB: dipakai oleh script.js untuk request AJAX (CSRF + endpoint) --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
         window.ReservationConfig = {
