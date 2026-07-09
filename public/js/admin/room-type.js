@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const rupiah = n => "Rp" + Number(n || 0).toLocaleString("id-ID");
 
-    // ================= SEARCH / FILTER / SORT =================
     const searchInput = document.getElementById('searchInput');
     const statusSelect = document.getElementById('statusSelect');
     const sortSelect = document.getElementById('sortSelect');
@@ -62,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
         applyFilters();
     });
 
-    // ================= VIEW MODAL =================
     const viewModal = document.getElementById('viewModal');
 
     document.querySelectorAll('.btn-view').forEach(function (btn) {
@@ -98,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     window.closeViewModal = closeViewModal;
 
-    // ================= ADD / EDIT MODAL =================
     const formModal = document.getElementById('formModal');
     const roomForm = document.getElementById('roomForm');
 
@@ -138,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('f_status_hidden').value = isActive ? 'active' : 'inactive';
             document.getElementById('f_status_label').textContent = isActive ? 'Active' : 'Inactive';
 
-            // submit ke route update, method di-spoof jadi PUT
             roomForm.action = window.roomTypeRoutes.updateBase + '/' + room.id;
             document.getElementById('formMethod').value = 'PUT';
 
@@ -153,13 +149,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     window.closeFormModal = closeFormModal;
 
-    // ================= TOGGLE STATUS =================
     document.getElementById('f_status')?.addEventListener('change', function (e) {
         document.getElementById('f_status_hidden').value = e.target.checked ? 'active' : 'inactive';
         document.getElementById('f_status_label').textContent = e.target.checked ? 'Active' : 'Inactive';
     });
 
-    // ================= FACILITY PICKER (dropdown multi-select) =================
     const facilityTrigger    = document.getElementById('facilityTrigger');
     const facilityPanel      = document.getElementById('facilityPanel');
     const facilitySelText    = document.getElementById('facilitySelectedText');
@@ -259,7 +253,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     window.setCheckedFacilities = setCheckedFacilities;
 
-    // ================= DELETE ROOM TYPE =================
     document.querySelectorAll('.form-delete-room-type').forEach(function (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -282,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ================= CLOSE MODAL (backdrop / escape) =================
     [formModal, viewModal].forEach(function (modal) {
         modal?.addEventListener('click', function (e) {
             if (e.target === modal) {
@@ -298,7 +290,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // ================= CHART ROOM TYPE DISTRIBUTION =================
     const chartEl = document.getElementById('distributionChart');
     const chartLegend = document.getElementById('chartLegend');
 
