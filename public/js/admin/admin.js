@@ -1,4 +1,3 @@
-/*loader + smooth page transition*/
 (function () {
   const loader = document.getElementById('pageLoader');
   if (!loader) return;
@@ -6,20 +5,14 @@
   const showLoader = () => loader.classList.remove('hide');
   const hideLoader = () => loader.classList.add('hide');
 
-  /* fade the loader out once the new page has actually finished rendering */
   window.addEventListener('load', () => {
     setTimeout(hideLoader, 350);
   });
 
-  /* if the page is restored from bfcache (browser back/forward), make sure
-     it isn't stuck showing the loader */
   window.addEventListener('pageshow', (e) => {
     if (e.persisted) hideLoader();
   });
 
-  /* intercept normal internal link clicks: fade the loader back in first,
-     THEN navigate — so moving between pages looks like a smooth cross-fade
-     instead of the browser's raw white-flash reload */
   document.addEventListener('click', (e) => {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
@@ -38,16 +31,14 @@
   });
 })();
 
-/*dark mode persistence*/
 (function initDarkModePreference(){
   try {
     if (localStorage.getItem('hpy-dark-mode') === '1') {
       document.body.classList.add('dark');
     }
-  } catch (e) { /* localStorage unavailable, ignore */ }
+  } catch (e) {}
 })();
 
-/*highlight row dari global search*/
 document.addEventListener('DOMContentLoaded', function () {
   const highlightId = new URLSearchParams(window.location.search).get('highlight');
   if (!highlightId) return;
@@ -64,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 300);
 });
 
-/*sidebar toggle*/
 const sidebar = document.getElementById('sidebar');
 const mainWrap = document.getElementById('main-wrap');
 const overlay = document.getElementById('overlay');
@@ -79,10 +69,12 @@ function toggleSidebar(){
     mainWrap.classList.toggle('collapsed');
   }
 }
+
 function closeMobileSidebar(){
   sidebar.classList.remove('mobile-open');
   overlay.classList.remove('show');
 }
+
 window.addEventListener('resize', ()=>{
   const nowMobile = window.innerWidth <= 900;
   if(nowMobile !== isMobile){
@@ -92,12 +84,12 @@ window.addEventListener('resize', ()=>{
     overlay.classList.remove('show');
   }
 });
+
 if(window.innerWidth <= 1200 && window.innerWidth > 900){
   sidebar.classList.add('collapsed');
   mainWrap.classList.add('collapsed');
 }
 
-/*submenu accordion*/
 document.querySelectorAll('[data-toggle]').forEach(item=>{
   item.addEventListener('click', ()=>{
     const key = item.getAttribute('data-toggle');
@@ -116,7 +108,6 @@ document.querySelectorAll('[data-toggle]').forEach(item=>{
   });
 });
 
-/*nav active state / page switch*/
 document.querySelectorAll('.nav-link[data-page]').forEach(item=>{
   item.addEventListener('click', ()=>{
     document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));
@@ -141,6 +132,7 @@ function showPlaceholder(title){
   document.getElementById('placeholderTitle').innerText = title;
   document.getElementById('placeholderName').innerText = title;
 }
+
 function goDashboard(){
   document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));
   const dashLink = document.querySelector('[data-page="dashboard"]');
@@ -151,6 +143,7 @@ function goDashboard(){
   ph.classList.add('hidden');
   dash.classList.remove('hidden');
 }
+
 function placeholderNav(el, title){
   document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));
   showPlaceholder(title);
@@ -158,8 +151,8 @@ function placeholderNav(el, title){
   return false;
 }
 
-/*dropdowns (navbar: notif, msg, profile)*/
 const allDropdownIds = ['notifDrop','msgDrop','profileDrop','dateDrop','resPeriodDrop','revPeriodDrop'];
+
 function toggleDrop(id){
   const el = document.getElementById(id);
   if(!el) return;
@@ -167,6 +160,7 @@ function toggleDrop(id){
   closeAllDropdowns();
   if(willOpen) el.classList.add('show');
 }
+
 function closeAllDropdowns(){
   allDropdownIds.forEach(id=>{
     const el = document.getElementById(id);
@@ -176,9 +170,9 @@ function closeAllDropdowns(){
 }
 
 document.addEventListener('click', (e)=>{
-    if(!e.target.closest('.relative')){
-        closeAllDropdowns();
-    }
+  if(!e.target.closest('.relative')){
+    closeAllDropdowns();
+  }
 });
 
 const notifDropEl = document.getElementById('notifDrop');
@@ -189,6 +183,7 @@ if(notifDropEl){
     }
   });
 }
+
 const msgDropEl = document.getElementById('msgDrop');
 if(msgDropEl){
   msgDropEl.addEventListener('transitionend', ()=>{
@@ -198,11 +193,10 @@ if(msgDropEl){
   });
 }
 
-/*dark mode*/
 function toggleDark(){
   document.body.classList.toggle('dark');
   const isDark = document.body.classList.contains('dark');
-  try { localStorage.setItem('hpy-dark-mode', isDark ? '1' : '0'); } catch (e) { /* ignore */ }
+  try { localStorage.setItem('hpy-dark-mode', isDark ? '1' : '0'); } catch (e) {}
   const icon = document.getElementById('darkIcon');
   if(isDark){
     icon.classList.remove('bi-moon-stars'); icon.classList.add('bi-sun-fill');
@@ -212,7 +206,6 @@ function toggleDark(){
   if(typeof refreshChartColors === 'function') refreshChartColors();
 }
 
-/*sinkronkan ikon bulan/matahari saat halaman baru dimuat*/
 document.addEventListener('DOMContentLoaded', function () {
   if (document.body.classList.contains('dark')) {
     const icon = document.getElementById('darkIcon');
@@ -220,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-/*ripple effect*/
 document.querySelectorAll('.btn-ripple').forEach(btn=>{
   btn.addEventListener('click', function(e){
     const rect = this.getBoundingClientRect();
@@ -235,7 +227,6 @@ document.querySelectorAll('.btn-ripple').forEach(btn=>{
   });
 });
 
-/*search shortcut*/
 document.addEventListener('keydown',(e)=>{
   if(e.ctrlKey && e.key==='/'){
     e.preventDefault();
@@ -249,7 +240,6 @@ document.addEventListener('keydown',(e)=>{
   }
 });
 
-/*global search*/
 const searchBox = document.getElementById('searchBox');
 const searchResults = document.getElementById('searchResults');
 let searchTimeout;
@@ -298,19 +288,15 @@ function renderSearchResults(data) {
   searchResults.classList.add('show');
 }
 
-/*logout*/
 function logoutAction(){
   closeAllDropdowns();
 
   const doLogout = () => {
     document.getElementById('pageLoader').classList.remove('hide');
-
     const form = document.getElementById('logout-form');
     if (form) {
-      // Kasus real: form logout ada di layout -> submit beneran ke route('logout')
       form.submit();
     } else {
-      // Kasus belum ada form (mis. halaman demo/testing) -> fallback simulasi saja
       setTimeout(() => {
         alert('Anda telah logout. (Demo)');
         document.getElementById('pageLoader').classList.add('hide');
@@ -319,7 +305,6 @@ function logoutAction(){
   };
 
   if (typeof Swal === 'undefined') {
-    // fallback kalau SweetAlert2 belum/gagal ter-load
     if (confirm('Yakin ingin logout dari Hotel Pulang Yo Admin?')) {
       doLogout();
     }
