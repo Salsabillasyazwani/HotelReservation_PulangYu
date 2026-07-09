@@ -2,6 +2,7 @@
     'use strict';
 
     const rupiah = (n) => 'Rp ' + Number(Math.round(n)).toLocaleString('id-ID');
+    
     const nightsBetween = (a, b) => {
         if (!a || !b) return 0;
         const diff = Math.round((new Date(b) - new Date(a)) / 86400000);
@@ -11,8 +12,6 @@
     let selectedRoom = null;
     let promoState = { valid: false, discount: 0, code: null };
     let promoDebounceTimer = null;
-
-    /* ---------- modal open/close ---------- */
 
     function showModal() {
         const m = document.getElementById('bookingModal');
@@ -42,8 +41,6 @@
         document.getElementById('bookingStepLabel').innerHTML = labels[step];
     }
 
-    /* ---------- helpers ---------- */
-
     function clearFieldErrors() {
         document.querySelectorAll('.error-text').forEach((el) => {
             el.textContent = '';
@@ -61,8 +58,6 @@
             }
         });
     }
-
-    /* ---------- STEP 1 -> STEP 2 : search available rooms ---------- */
 
     function searchRooms() {
         clearFieldErrors();
@@ -134,8 +129,6 @@
         });
     }
 
-    /* ---------- STEP 2 -> STEP 3 : select room ---------- */
-
     function selectRoom(room, checkIn, checkOut, guests) {
         selectedRoom = room;
         promoState = { valid: false, discount: 0, code: null };
@@ -172,8 +165,6 @@
         calcSummary();
         goToStep(3);
     }
-
-    /* ---------- summary & promo ---------- */
 
     function calcSummary() {
         if (!selectedRoom) return { nights: 0, subtotal: 0, discount: 0, tax: 0, total: 0 };
@@ -250,8 +241,6 @@
             });
     }
 
-    /* ---------- submit ---------- */
-
     function submitReservation(e) {
         e.preventDefault();
         clearFieldErrors();
@@ -297,8 +286,6 @@
                 btn.textContent = originalLabel;
             });
     }
-
-    /* ---------- init ---------- */
 
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('btnOpenBooking')?.addEventListener('click', showModal);
